@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Adem Garic · QA Engineer, AI &amp; SDET</title>
+<meta name="description" content="Adem Garic: QA Engineer, AI and SDET. 6+ years across manual QA, test automation (Appium, Selenium, Playwright), and AI evaluation (LLM-as-a-judge, hallucination and guardrail testing, MCP).">
+<meta property="og:title" content="Adem Garic · QA Engineer, AI & SDET">
+<meta property="og:description" content="Manual QA, SDET, and AI quality engineering. Frameworks, evals, and agents that find the bug everyone else missed.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://ademdeniz.github.io/">
+<meta name="theme-color" content="#0b0f14">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230b0f14'/%3E%3Cpath d='M18 33l9 9 19-20' stroke='%2334d399' stroke-width='7' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f7f8fa; --bg-2:#ffffff; --panel:#ffffff; --panel-2:#f1f3f6;
+  --text:#0f172a; --muted:#526074; --faint:#8a97a8;
+  --line:#e3e7ed; --line-2:#d3d9e1;
+  --pass:#059669; --pass-soft:#d1fae5; --fail:#dc2626; --fail-soft:#fee2e2;
+  --warn:#b45309; --warn-soft:#fef3c7;
+  --accent:#4f46e5; --accent-soft:#e0e7ff; --accent-2:#0891b2;
+  --term-bg:#0b0f14; --term-text:#d6deeb; --term-muted:#6b7a90;
+  --shadow:0 1px 2px rgba(15,23,42,.05),0 8px 30px rgba(15,23,42,.06);
+  --radius:14px;
+  --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  --sans:"Inter",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0b0f14; --bg-2:#0f141b; --panel:#121923; --panel-2:#17202c;
+    --text:#e6edf5; --muted:#9aa8ba; --faint:#66758a;
+    --line:#1f2a37; --line-2:#2a3746;
+    --pass:#34d399; --pass-soft:rgba(52,211,153,.12); --fail:#f87171; --fail-soft:rgba(248,113,113,.12);
+    --warn:#fbbf24; --warn-soft:rgba(251,191,36,.12);
+    --accent:#818cf8; --accent-soft:rgba(129,140,248,.14); --accent-2:#22d3ee;
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 10px 40px rgba(0,0,0,.35);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0b0f14; --bg-2:#0f141b; --panel:#121923; --panel-2:#17202c;
+  --text:#e6edf5; --muted:#9aa8ba; --faint:#66758a;
+  --line:#1f2a37; --line-2:#2a3746;
+  --pass:#34d399; --pass-soft:rgba(52,211,153,.12); --fail:#f87171; --fail-soft:rgba(248,113,113,.12);
+  --warn:#fbbf24; --warn-soft:rgba(251,191,36,.12);
+  --accent:#818cf8; --accent-soft:rgba(129,140,248,.14); --accent-2:#22d3ee;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 10px 40px rgba(0,0,0,.35);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+.mono{font-family:var(--mono)}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+
+/* nav */
+header.nav{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--bg) 82%,transparent);backdrop-filter:saturate(1.4) blur(12px);-webkit-backdrop-filter:saturate(1.4) blur(12px);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;gap:20px;height:60px}
+.brand{font-family:var(--mono);font-weight:700;text-decoration:none;font-size:15px;display:flex;align-items:center;gap:8px;white-space:nowrap}
+.brand .dot{width:9px;height:9px;border-radius:50%;background:var(--pass);box-shadow:0 0 0 4px var(--pass-soft)}
+.nav ul{list-style:none;display:flex;gap:4px;margin:0 0 0 auto;padding:0}
+.nav ul a{font-size:14px;color:var(--muted);text-decoration:none;padding:7px 11px;border-radius:8px;transition:.15s}
+.nav ul a:hover{color:var(--text);background:var(--panel-2)}
+.icon-btn{border:1px solid var(--line);background:var(--panel);color:var(--text);width:36px;height:36px;border-radius:10px;display:grid;place-items:center;cursor:pointer;flex:none}
+.icon-btn:hover{border-color:var(--line-2)}
+.icon-btn svg{width:17px;height:17px}
+.menu-btn{display:none}
+@media (max-width:860px){
+  .nav ul{display:none;position:absolute;top:60px;left:0;right:0;flex-direction:column;background:var(--bg-2);border-bottom:1px solid var(--line);padding:10px 16px 16px}
+  .nav ul.open{display:flex}
+  .nav ul a{display:block;padding:10px 12px}
+  .menu-btn{display:grid;margin-left:auto}
+}
+
+/* hero */
+.hero{padding:72px 0 40px;position:relative}
+.hero::before{content:"";position:absolute;inset:0;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:44px 44px;mask-image:radial-gradient(ellipse 70% 60% at 50% 30%,#000 30%,transparent 75%);-webkit-mask-image:radial-gradient(ellipse 70% 60% at 50% 30%,#000 30%,transparent 75%);opacity:.55;pointer-events:none}
+.hero .wrap{position:relative}
+.hero .hero-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:48px;align-items:center}
+@media (max-width:960px){.hero .hero-grid{grid-template-columns:1fr;gap:36px}.hero{padding-top:44px}}
+.status{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:12.5px;color:var(--pass);background:var(--pass-soft);border:1px solid color-mix(in srgb,var(--pass) 30%,transparent);padding:5px 12px;border-radius:999px}
+.status .pulse{width:7px;height:7px;border-radius:50%;background:var(--pass);animation:pulse 2s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--pass) 60%,transparent)}70%{box-shadow:0 0 0 8px transparent}100%{box-shadow:0 0 0 0 transparent}}
+h1{font-size:clamp(38px,6vw,60px);line-height:1.04;letter-spacing:-.035em;margin:18px 0 6px;font-weight:800}
+.role{font-size:clamp(17px,2.2vw,21px);color:var(--muted);font-weight:500;margin:0 0 18px;letter-spacing:-.01em}
+.role b{color:var(--text);font-weight:600}
+.lede{font-size:17px;color:var(--muted);max-width:560px;margin:0 0 26px}
+.lede em{font-style:normal;color:var(--text);background:linear-gradient(transparent 62%,var(--accent-soft) 62%)}
+.cta{display:flex;flex-wrap:wrap;gap:10px}
+.btn{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:14.5px;text-decoration:none;padding:11px 18px;border-radius:10px;border:1px solid var(--line-2);background:var(--panel);color:var(--text);cursor:pointer;transition:.15s;font-family:inherit}
+.btn:hover{transform:translateY(-1px);border-color:var(--faint)}
+.btn.primary{background:var(--text);color:var(--bg);border-color:var(--text)}
+.btn svg{width:16px;height:16px}
+.meta-row{display:flex;flex-wrap:wrap;gap:16px;margin-top:22px;font-size:13.5px;color:var(--faint)}
+.meta-row span{display:inline-flex;align-items:center;gap:6px}
+.meta-row svg{width:14px;height:14px}
+
+/* terminal */
+.term{background:var(--term-bg);border-radius:var(--radius);box-shadow:var(--shadow),0 0 0 1px rgba(255,255,255,.06) inset;overflow:hidden;font-family:var(--mono);font-size:12.5px;color:var(--term-text)}
+.term-bar{display:flex;align-items:center;gap:7px;padding:11px 14px;border-bottom:1px solid rgba(255,255,255,.07);background:rgba(255,255,255,.02)}
+.term-bar i{width:11px;height:11px;border-radius:50%;display:block}
+.term-bar .t{margin-left:8px;color:var(--term-muted);font-size:12px;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.term-bar button{font-family:var(--mono);font-size:11.5px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:#cbd5e1;border-radius:6px;padding:3px 9px;cursor:pointer}
+.term-bar button:hover{background:rgba(255,255,255,.12)}
+.term-body{padding:16px 18px 18px;min-height:360px;line-height:1.75;white-space:pre-wrap;word-break:break-word}
+.term-body .p{color:#7dd3fc}.term-body .ok{color:#34d399}.term-body .dim{color:var(--term-muted)}.term-body .y{color:#fbbf24}.term-body .b{color:#fff;font-weight:700}
+.term-body .caret{display:inline-block;width:8px;height:15px;background:#d6deeb;vertical-align:-2px;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+
+/* stats */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;margin-top:56px}
+.stat{background:var(--panel);padding:20px 22px}
+.stat b{display:block;font-size:30px;letter-spacing:-.03em;font-weight:800}
+.stat span{font-size:13.5px;color:var(--muted)}
+@media (max-width:760px){.stats{grid-template-columns:repeat(2,1fr)}}
+
+/* sections */
+section{padding:84px 0}
+section.alt{background:var(--bg-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.eyebrow{font-family:var(--mono);font-size:12.5px;color:var(--accent);letter-spacing:.04em;text-transform:uppercase;margin:0 0 10px}
+h2{font-size:clamp(28px,4vw,40px);letter-spacing:-.03em;line-height:1.1;margin:0 0 14px;font-weight:800}
+.sub{color:var(--muted);max-width:680px;margin:0 0 36px;font-size:16.5px}
+
+/* about */
+.about-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:40px}
+@media (max-width:860px){.about-grid{grid-template-columns:1fr}}
+.about-grid p:not(.eyebrow){color:var(--muted);margin:0 0 16px;font-size:16.5px}
+.about-grid p strong{color:var(--text);font-weight:600}
+.principles{display:flex;flex-direction:column;gap:12px}
+.principle{border:1px solid var(--line);background:var(--panel);border-radius:12px;padding:16px 18px}
+.principle h4{margin:0 0 4px;font-size:15px;display:flex;gap:9px;align-items:center}
+.principle p{margin:0;font-size:14.5px;color:var(--muted)}
+.principle .n{font-family:var(--mono);font-size:11.5px;color:var(--accent);background:var(--accent-soft);padding:2px 7px;border-radius:6px}
+
+/* lens tabs */
+.tabs{display:inline-flex;background:var(--panel-2);border:1px solid var(--line);border-radius:12px;padding:4px;gap:4px;flex-wrap:wrap}
+.tab{font-family:inherit;font-size:14.5px;font-weight:600;border:0;background:transparent;color:var(--muted);padding:9px 16px;border-radius:9px;cursor:pointer;display:flex;gap:8px;align-items:center;transition:.15s}
+.tab:hover{color:var(--text)}
+.tab[aria-selected="true"]{background:var(--panel);color:var(--text);box-shadow:0 1px 3px rgba(0,0,0,.08),0 0 0 1px var(--line)}
+.tab .sw{width:8px;height:8px;border-radius:50%}
+.lens-panel{margin-top:26px;display:grid;grid-template-columns:1fr 1.25fr;gap:24px;animation:fade .35s ease}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@media (max-width:860px){.lens-panel{grid-template-columns:1fr}}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:24px}
+.lens-panel h3{margin:0 0 8px;font-size:22px;letter-spacing:-.02em}
+.lens-panel .quote{color:var(--muted);margin:0 0 20px}
+.chips{display:flex;flex-wrap:wrap;gap:7px}
+.chip{font-size:12.5px;font-family:var(--mono);padding:4px 10px;border-radius:7px;background:var(--panel-2);border:1px solid var(--line);color:var(--text);white-space:nowrap}
+.lens-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:14px}
+.lens-list li{display:grid;grid-template-columns:22px 1fr;gap:10px;font-size:15px;color:var(--muted)}
+.lens-list li b{color:var(--text);font-weight:600}
+.lens-list .ck{width:20px;height:20px;border-radius:6px;background:var(--pass-soft);color:var(--pass);display:grid;place-items:center;margin-top:2px}
+.lens-list .ck svg{width:12px;height:12px}
+.lens-meta{margin-top:18px;padding-top:16px;border-top:1px dashed var(--line-2);font-size:13px;color:var(--faint);font-family:var(--mono)}
+
+/* eval lab */
+.lab{display:grid;grid-template-columns:1fr 1.35fr;gap:22px;align-items:start}
+@media (max-width:960px){.lab{grid-template-columns:1fr}}
+.src{font-size:14.5px;color:var(--muted)}
+.src h4,.lab h4{margin:0 0 10px;font-size:12.5px;font-family:var(--mono);text-transform:uppercase;letter-spacing:.05em;color:var(--faint);font-weight:500}
+.src blockquote{margin:0 0 18px;padding:14px 16px;border-left:3px solid var(--accent);background:var(--panel-2);border-radius:0 10px 10px 0;color:var(--text);font-size:14.5px}
+.src blockquote span{display:block;margin-bottom:6px}
+.src blockquote span:last-child{margin:0}
+.q{font-weight:600;color:var(--text);margin:0}
+.answers{display:flex;flex-direction:column;gap:14px}
+.ans{border:1px solid var(--line);border-radius:12px;background:var(--panel);overflow:hidden;transition:border-color .2s}
+.ans-top{padding:14px 16px;display:grid;grid-template-columns:auto 1fr;gap:12px}
+.ans-id{font-family:var(--mono);font-size:12px;font-weight:700;background:var(--panel-2);border:1px solid var(--line);border-radius:7px;width:28px;height:28px;display:grid;place-items:center}
+.ans-text{font-size:14.5px}
+.ans-text .claim{border-radius:4px;padding:1px 2px;transition:background .3s,box-shadow .3s}
+.lab.judged .claim.s{background:var(--pass-soft);box-shadow:inset 0 -2px 0 var(--pass)}
+.lab.judged .claim.u{background:var(--fail-soft);box-shadow:inset 0 -2px 0 var(--fail)}
+.ans-actions{display:flex;align-items:center;gap:8px;padding:10px 16px;border-top:1px solid var(--line);background:var(--panel-2);flex-wrap:wrap}
+.ans-actions .lbl{font-size:12.5px;color:var(--faint);margin-right:auto;font-family:var(--mono)}
+.vote{font-family:var(--mono);font-size:12px;font-weight:700;padding:5px 12px;border-radius:7px;border:1px solid var(--line-2);background:var(--panel);color:var(--muted);cursor:pointer}
+.vote.pass[aria-pressed="true"]{background:var(--pass);border-color:var(--pass);color:#fff}
+.vote.fail[aria-pressed="true"]{background:var(--fail);border-color:var(--fail);color:#fff}
+.verdict{display:none;padding:12px 16px;border-top:1px solid var(--line);font-size:13.5px}
+.lab.judged .verdict{display:block}
+.verdict .row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:6px}
+.pill{font-family:var(--mono);font-size:11.5px;font-weight:700;padding:3px 9px;border-radius:999px}
+.pill.pass{background:var(--pass-soft);color:var(--pass)}.pill.fail{background:var(--fail-soft);color:var(--fail)}.pill.warn{background:var(--warn-soft);color:var(--warn)}
+.bar{flex:1;min-width:120px;height:6px;background:var(--panel-2);border-radius:99px;overflow:hidden}
+.bar i{display:block;height:100%;width:0;border-radius:99px;transition:width .8s cubic-bezier(.2,.8,.2,1)}
+.verdict p{margin:4px 0 0;color:var(--muted)}
+.lab-foot{display:flex;gap:12px;align-items:center;margin-top:16px;flex-wrap:wrap}
+.lab-score{font-size:14px;color:var(--muted)}
+.lab-score b{color:var(--text)}
+.lab-notes{margin-top:22px;display:grid;gap:10px}
+.lab-notes div{font-size:14px;color:var(--muted);padding-left:14px;border-left:2px solid var(--line-2)}
+.lab-notes b{color:var(--text)}
+
+/* artifacts (manual QA) */
+.art-wrap{margin-top:26px}
+.art{display:none;animation:fade .35s ease}
+.art.on{display:block}
+.jira{border:1px solid var(--line);border-radius:var(--radius);background:var(--panel);overflow:hidden}
+.jira-head{padding:18px 22px;border-bottom:1px solid var(--line);display:flex;gap:14px;align-items:flex-start;flex-wrap:wrap}
+.jira-key{font-family:var(--mono);font-size:12.5px;color:var(--faint)}
+.jira-head h3{margin:2px 0 0;font-size:18.5px;letter-spacing:-.01em;flex-basis:100%}
+.jira-body{display:grid;grid-template-columns:minmax(0,1fr) 280px}
+@media (max-width:760px){.jira-body{grid-template-columns:1fr}}
+.jira-main{padding:20px 22px;font-size:14.5px;color:var(--muted)}
+.jira-main h5{margin:18px 0 6px;font-size:12px;font-family:var(--mono);text-transform:uppercase;letter-spacing:.05em;color:var(--text)}
+.jira-main h5:first-child{margin-top:0}
+.jira-main ol,.jira-main ul{margin:0;padding-left:20px}
+.jira-main li{margin-bottom:3px}
+.jira-main code{font-family:var(--mono);font-size:12.5px;background:var(--panel-2);border:1px solid var(--line);padding:1px 6px;border-radius:5px;color:var(--text)}
+.jira-side{border-left:1px solid var(--line);padding:20px 22px;background:var(--panel-2);font-size:13.5px}
+@media (max-width:760px){.jira-side{border-left:0;border-top:1px solid var(--line)}}
+.jira-side dl{margin:0;display:grid;grid-template-columns:auto minmax(0,1fr);gap:10px 14px}
+.jira-side dt{color:var(--faint)}
+.jira-side dd{margin:0;font-weight:500;overflow-wrap:anywhere}
+.tag-sev{font-family:var(--mono);font-size:11.5px;font-weight:700;padding:2px 8px;border-radius:6px}
+table.tc{width:100%;border-collapse:collapse;font-size:14px}
+table.tc th,table.tc td{text-align:left;padding:11px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+table.tc th{font-family:var(--mono);font-size:11.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--faint);font-weight:500;background:var(--panel-2)}
+table.tc td:first-child{font-family:var(--mono);color:var(--faint);white-space:nowrap}
+.tc-scroll{overflow-x:auto}
+.risk{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;padding:20px 22px}
+.risk .card{padding:16px 18px}
+.risk h5{margin:0 0 6px;font-size:14.5px}
+.risk p{margin:0;font-size:13.5px;color:var(--muted)}
+.illus{font-size:12.5px;color:var(--faint);margin-top:12px;font-family:var(--mono)}
+
+/* projects */
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:26px}
+.filter{font-family:var(--mono);font-size:12.5px;padding:7px 13px;border-radius:9px;border:1px solid var(--line);background:var(--panel);color:var(--muted);cursor:pointer;transition:.15s}
+.filter:hover{color:var(--text);border-color:var(--line-2)}
+.filter[aria-pressed="true"]{background:var(--text);color:var(--bg);border-color:var(--text)}
+.filter .c{opacity:.6;margin-left:4px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px}
+@media (max-width:420px){.grid{grid-template-columns:1fr}}
+.proj{display:flex;flex-direction:column;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:22px;text-decoration:none;transition:transform .2s,border-color .2s,box-shadow .2s;position:relative}
+.proj:hover{transform:translateY(-3px);border-color:var(--line-2);box-shadow:var(--shadow)}
+.proj.hide{display:none}
+.proj-top{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.proj-ic{width:38px;height:38px;border-radius:10px;display:grid;place-items:center;flex:none}
+.proj-ic svg{width:19px;height:19px}
+.proj h3{margin:0;font-size:16.5px;font-family:var(--mono);letter-spacing:-.02em;font-weight:700;word-break:break-word}
+.proj .kind{font-size:12px;color:var(--faint)}
+.proj p{margin:0 0 14px;color:var(--muted);font-size:14.5px;flex:1}
+.proj .hl{font-size:13.5px;color:var(--text);background:var(--panel-2);border-radius:9px;padding:10px 12px;margin-bottom:14px;border:1px solid var(--line)}
+.proj .hl b{color:var(--pass);font-family:var(--mono);font-size:11.5px;margin-right:4px}
+.proj .arrow{position:absolute;top:22px;right:20px;color:var(--faint);transition:.2s}
+.proj:hover .arrow{color:var(--text);transform:translate(2px,-2px)}
+.proj .arrow svg{width:17px;height:17px}
+
+/* experience */
+.timeline{position:relative;display:flex;flex-direction:column;gap:14px}
+.job{border:1px solid var(--line);border-radius:var(--radius);background:var(--panel);overflow:hidden}
+.job summary{list-style:none;cursor:pointer;padding:18px 22px;display:grid;grid-template-columns:44px 1fr auto;gap:16px;align-items:center}
+.job summary::-webkit-details-marker{display:none}
+.job summary:hover{background:var(--panel-2)}
+.logo{width:44px;height:44px;border-radius:11px;display:grid;place-items:center;font-weight:800;font-size:15px;color:#fff}
+.job h3{margin:0;font-size:16.5px;letter-spacing:-.01em}
+.job .co{font-size:14px;color:var(--muted)}
+.job .when{font-family:var(--mono);font-size:12.5px;color:var(--faint);text-align:right;white-space:nowrap}
+.job .when .chev{display:inline-block;margin-left:8px;transition:transform .2s}
+.job[open] .when .chev{transform:rotate(180deg)}
+.job-body{padding:0 22px 20px 82px}
+@media (max-width:640px){.job summary{grid-template-columns:40px 1fr}.job .when{grid-column:2;text-align:left}.job-body{padding:0 18px 18px}}
+.job-body ul{margin:0 0 14px;padding-left:18px;color:var(--muted);font-size:14.5px}
+.job-body li{margin-bottom:6px}
+.job-body li b{color:var(--text);font-weight:600}
+.now{font-family:var(--mono);font-size:11px;font-weight:700;color:var(--pass);background:var(--pass-soft);padding:2px 8px;border-radius:99px;margin-left:8px;vertical-align:2px}
+
+/* recs */
+.recs{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+@media (max-width:860px){.recs{grid-template-columns:1fr}}
+.rec{margin:0;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:26px;position:relative}
+.rec::before{content:"\201C";position:absolute;top:6px;right:20px;font-size:84px;line-height:1;color:var(--accent-soft);font-family:Georgia,serif}
+.rec blockquote{margin:0 0 18px;font-size:16px;color:var(--text);position:relative}
+.rec figcaption{font-size:14px}
+.rec figcaption b{display:block}
+.rec figcaption span{color:var(--faint);font-size:13px}
+
+/* creds */
+.creds{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+@media (max-width:860px){.creds{grid-template-columns:1fr}}
+.creds h4{margin:0 0 14px;font-size:13px;font-family:var(--mono);color:var(--faint);text-transform:uppercase;letter-spacing:.05em;font-weight:500}
+.cred-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px;font-size:14.5px}
+.cred-list b{display:block;font-weight:600}
+.cred-list span{color:var(--muted);font-size:13.5px}
+
+/* contact */
+.report{border:1px solid var(--line);border-radius:18px;background:var(--panel);overflow:hidden;box-shadow:var(--shadow)}
+.report-head{display:flex;align-items:center;gap:12px;padding:16px 24px;border-bottom:1px solid var(--line);font-family:var(--mono);font-size:13px;color:var(--muted);flex-wrap:wrap}
+.report-head .pill{font-size:12px}
+.report-body{padding:40px 24px;text-align:center}
+.report-body h2{margin-bottom:10px}
+.report-body .sub{margin:0 auto 26px}
+.report-body .cta{justify-content:center}
+.toast{position:fixed;bottom:24px;left:50%;transform:translate(-50%,20px);background:var(--text);color:var(--bg);padding:10px 16px;border-radius:10px;font-size:14px;font-weight:600;opacity:0;pointer-events:none;transition:.25s;z-index:100}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+footer{padding:36px 0 50px;color:var(--faint);font-size:13.5px}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+footer a{color:var(--muted)}
+
+.reveal{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <a href="#top" class="brand"><span class="dot"></span>adem.garic()</a>
+    <ul id="menu">
+      <li><a href="#about">About</a></li>
+      <li><a href="#lens">Skills</a></li>
+      <li><a href="#lab">Eval Lab</a></li>
+      <li><a href="#artifacts">Manual QA</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button class="icon-btn menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+    <button class="icon-btn" id="themeBtn" aria-label="Toggle color theme">
+      <svg id="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      <svg id="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+    </button>
+  </div>
+</header>
+
+<main id="top">
+<!-- HERO -->
+<div class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="status"><span class="pulse"></span>QA Engineer, AI @ TrueLearn</span>
+      <h1>Adem Garic</h1>
+      <p class="role"><b>QA Engineer, AI</b> · SDET · QA Analyst</p>
+      <p class="lede">I build automation frameworks, AI evals, and QA agents. I also break things on purpose. That covers <em>six years of web, mobile, and API testing</em> and, lately, grading LLM output where there's no single right answer.</p>
+      <div class="cta">
+        <a class="btn primary" href="#projects">View my work
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a class="btn" href="#lab">Try the Eval Lab</a>
+        <a class="btn" href="https://www.linkedin.com/in/adem-garic-sdet-qa/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>LinkedIn</a>
+        <a class="btn" href="https://github.com/ademdeniz" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 0-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-6 0-1.2.5-2.3 1.3-3.1-.2-.4-.6-1.6 0-3.2 0 0 1-.3 3.4 1.2a11.5 11.5 0 0 1 6 0C17.3 4.7 18.3 5 18.3 5c.7 1.6.2 2.8.1 3.2.8.8 1.3 1.9 1.3 3.1 0 4.7-2.8 5.7-5.5 6 .5.4.9 1.1.9 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"/></svg>GitHub</a>
+      </div>
+      <div class="meta-row">
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 5h16v14H4z"/><path d="m4 7 8 6 8-6"/></svg>ademdenizgaric@gmail.com</span>
+      </div>
+    </div>
+
+    <div class="term" aria-label="Animated test run summarizing Adem's qualifications">
+      <div class="term-bar">
+        <i style="background:#ff5f57"></i><i style="background:#febc2e"></i><i style="background:#28c840"></i>
+        <span class="t">~/portfolio — zsh</span>
+        <button id="rerun" type="button">↻ re-run</button>
+      </div>
+      <div class="term-body" id="termBody" aria-live="off"></div>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="stats reveal">
+      <div class="stat"><b data-count="6" data-suffix="+">6+</b><span>years in QA and SDET roles</span></div>
+      <div class="stat"><b data-count="50" data-suffix="+">50+</b><span>mobile tests in CI, on a framework I built from scratch</span></div>
+      <div class="stat"><b data-count="100" data-suffix="+">100+</b><span>test cases in AI integration test plans with golden datasets</span></div>
+      <div class="stat"><b data-count="8">8</b><span>open-source QA and AI testing repos</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about" class="alt">
+  <div class="wrap about-grid">
+    <div class="reveal">
+      <p class="eyebrow">// about</p>
+      <h2>Different worlds, same instinct: find the detail everyone else missed.</h2>
+      <p>I started in <strong>manual and exploratory testing</strong>: writing test cases, triaging defects, and learning how real users break software. From there I moved into <strong>SDET work</strong>. I built an Appium 2 mobile framework from scratch for iOS and Android, maintained business-critical Selenium suites, led the move to Playwright, and wired it all into Jenkins, Bitrise, and BrowserStack.</p>
+      <p>Today I work in <strong>AI quality</strong> as a QA Engineer, AI at TrueLearn. I build test sets and evaluation systems for AI features, write LLM-as-a-judge graders, and hunt for hallucinations, retrieval regressions, and guardrail breaks. On the side I build my own AI testing tools: MCP servers, Claude-powered QA agents, and eval harnesses.</p>
+      <p>I also shipped my own AI product, <strong>Pitchlio</strong>, where I was the PM, the developer, and the QA engineer. Outside engineering I'm a published author and a literary translator between Bosnian and English. That work trains the same eye I bring to testing.</p>
+    </div>
+    <div class="principles reveal">
+      <div class="principle"><h4><span class="n">01</span>Risk first, coverage second</h4><p>I test where failure costs the most. A long list of green checks can still miss the one flow that matters.</p></div>
+      <div class="principle"><h4><span class="n">02</span>“Flaky” is a finding, not an excuse</h4><p>Many of the bugs I've found were hiding behind what everyone else had written off as flakiness.</p></div>
+      <div class="principle"><h4><span class="n">03</span>Test the judge before you trust it</h4><p>An eval is only as good as its grader. I build grounded and adversarial cases first, so I know every right answer before the model runs.</p></div>
+      <div class="principle"><h4><span class="n">04</span>Bug reports are a product</h4><p>A report should be clear, reproducible, and evidence-based, so a developer can act on it without a follow-up call.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- LENS -->
+<section id="lens">
+  <div class="wrap">
+    <p class="eyebrow">// pick a lens</p>
+    <h2>Three kinds of QA, one engineer.</h2>
+    <p class="sub">Pick the role you're hiring for to see the relevant skills, evidence, and tools.</p>
+    <div class="tabs" role="tablist" aria-label="Role lens">
+      <button class="tab" role="tab" aria-selected="true" aria-controls="lensPanel" data-lens="ai"><span class="sw" style="background:#8b5cf6"></span>AI Quality</button>
+      <button class="tab" role="tab" aria-selected="false" aria-controls="lensPanel" data-lens="sdet"><span class="sw" style="background:#0ea5e9"></span>SDET / Automation</button>
+      <button class="tab" role="tab" aria-selected="false" aria-controls="lensPanel" data-lens="manual"><span class="sw" style="background:#10b981"></span>Manual QA</button>
+    </div>
+    <div id="lensPanel" role="tabpanel" aria-live="polite"></div>
+  </div>
+</section>
+
+<!-- EVAL LAB -->
+<section id="lab" class="alt">
+  <div class="wrap">
+    <p class="eyebrow">// interactive · ai quality</p>
+    <h2>Eval Lab: be the LLM judge.</h2>
+    <p class="sub">This is a small version of my day-to-day AI QA work. Three model answers were generated from one source. Mark each one <b>PASS</b> or <b>FAIL</b> for <i>faithfulness</i>, meaning every claim traces back to the source. Then run the judge and compare.</p>
+
+    <div class="lab" id="labRoot">
+      <div class="card src">
+        <h4>Source context (retrieved)</h4>
+        <blockquote>
+          <span>Metformin is a first-line medication for type 2 diabetes.</span>
+          <span>It lowers blood glucose mainly by reducing hepatic glucose production.</span>
+          <span>The most common side effects are gastrointestinal, such as nausea and diarrhea.</span>
+          <span>It should be avoided in patients with severe renal impairment.</span>
+        </blockquote>
+        <h4>User question</h4>
+        <p class="q">“How does metformin work, and what side effects should I watch for?”</p>
+        <div class="lab-notes">
+          <div><b>Faithful ≠ true.</b> An answer can be medically correct and still fail if it adds a fact the source never stated.</div>
+          <div><b>Decompose, then score.</b> Split the answer into atomic claims and check each one against the source. Fix the flagged claim; the overall score alone won't tell you what to change.</div>
+        </div>
+      </div>
+
+      <div>
+        <div class="answers" id="answers"></div>
+        <div class="lab-foot">
+          <button class="btn primary" id="runJudge" type="button">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4v16l13-8z"/></svg>Run judge</button>
+          <button class="btn" id="resetLab" type="button">Reset</button>
+          <span class="lab-score" id="labScore">Mark all three answers, then run the judge.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MANUAL QA ARTIFACTS -->
+<section id="artifacts">
+  <div class="wrap">
+    <p class="eyebrow">// manual qa · how I document</p>
+    <h2>The artifacts behind the automation.</h2>
+    <p class="sub">Good QA starts before any code: clear bug reports, sharp test cases, and a risk-based plan. These samples show the format and depth I work to.</p>
+    <div class="tabs" role="tablist" aria-label="QA artifact samples">
+      <button class="tab" role="tab" aria-selected="true" data-art="bug">Bug report</button>
+      <button class="tab" role="tab" aria-selected="false" data-art="cases">Test cases</button>
+      <button class="tab" role="tab" aria-selected="false" data-art="plan">Risk-based plan</button>
+    </div>
+
+    <div class="art-wrap">
+      <div class="art on" data-art="bug">
+        <div class="jira">
+          <div class="jira-head">
+            <span class="jira-key">QA-1042 · Bug</span>
+            <span class="tag-sev" style="background:var(--fail-soft);color:var(--fail)">S2 · High</span>
+            <h3>iOS: Checkout “Pay” button stays disabled after saved card is re-selected when returning from 3-D Secure</h3>
+          </div>
+          <div class="jira-body">
+            <div class="jira-main">
+              <h5>Summary</h5>
+              <p style="margin:0">After the user backs out of the 3-D Secure challenge and re-selects the same saved card, the Pay button never re-enables. The user can't complete the purchase without restarting the app.</p>
+              <h5>Steps to reproduce</h5>
+              <ol>
+                <li>Log in as <code>qa+3ds@example.com</code>, add any item to the cart</li>
+                <li>Go to Checkout and select saved card <code>•••• 3220</code> (3DS-enrolled test card)</li>
+                <li>Tap <b>Pay</b>; the 3DS sheet appears</li>
+                <li>Tap <b>Cancel</b> on the 3DS sheet</li>
+                <li>Tap a different card, then re-select <code>•••• 3220</code></li>
+              </ol>
+              <h5>Expected</h5>
+              <p style="margin:0">Pay button becomes enabled once a valid card is selected.</p>
+              <h5>Actual</h5>
+              <p style="margin:0">Pay button stays disabled (<code>isEnabled=false</code> in the Appium inspector). No console error.</p>
+              <h5>Evidence and notes</h5>
+              <ul>
+                <li>Reproduces 5/5 on iOS 17.5 (iPhone 15, BrowserStack) and 3/3 on a physical iPhone 12</li>
+                <li><b>Not</b> reproducible on Android 14; this points at iOS-specific state handling</li>
+                <li>Screen recording and network HAR attached. The <code>/payment-intents</code> call is never re-issued after cancel</li>
+                <li>Regression: first build affected is <code>4.18.0 (412)</code>; <code>4.17.2</code> is fine</li>
+              </ul>
+            </div>
+            <div class="jira-side">
+              <dl>
+                <dt>Priority</dt><dd>P1: blocks revenue flow</dd>
+                <dt>Env</dt><dd>iOS 17.5 · Staging</dd>
+                <dt>Build</dt><dd>4.18.0 (412)</dd>
+                <dt>Component</dt><dd>Checkout / Payments</dd>
+                <dt>Repro rate</dt><dd>100% (8/8)</dd>
+                <dt>Labels</dt><dd>regression, ios, 3ds</dd>
+                <dt>Automation</dt><dd>Appium test added: <code>CheckoutTest#threeDsCancelReselect</code></dd>
+              </dl>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="art" data-art="cases">
+        <div class="jira">
+          <div class="jira-head"><span class="jira-key">Suite · Login &amp; Session</span><h3>Test cases: authentication (excerpt)</h3></div>
+          <div class="tc-scroll">
+          <table class="tc">
+            <thead><tr><th>ID</th><th>Scenario</th><th>Steps / data</th><th>Expected result</th><th>Type</th></tr></thead>
+            <tbody>
+              <tr><td>TC-AUTH-01</td><td>Valid login</td><td>Valid email + password → Sign in</td><td>Lands on dashboard; session cookie set with <code>Secure; HttpOnly</code></td><td><span class="pill pass">smoke</span></td></tr>
+              <tr><td>TC-AUTH-04</td><td>Invalid password, lockout threshold</td><td>Wrong password ×5</td><td>Generic error (no user enumeration); 6th attempt locked for 15 min</td><td><span class="pill warn">negative</span></td></tr>
+              <tr><td>TC-AUTH-07</td><td>Session persists across reload</td><td>Log in → hard reload → back/forward</td><td>User stays authenticated; no flash of login screen</td><td><span class="pill pass">regression</span></td></tr>
+              <tr><td>TC-AUTH-09</td><td>Unauthenticated deep link</td><td>Open <code>/secure/settings</code> logged out</td><td>Redirect to login, then return to the original URL after sign-in</td><td><span class="pill pass">regression</span></td></tr>
+              <tr><td>TC-AUTH-12</td><td>Whitespace and Unicode in email</td><td><code>" User@Exämple.com "</code></td><td>Trimmed, case-insensitive match; IDN handled or rejected with a clear message</td><td><span class="pill warn">edge</span></td></tr>
+              <tr><td>TC-AUTH-15</td><td>Concurrent sessions</td><td>Log in on device A, then B; log out on A</td><td>Behaves per spec (single vs. multi-session); B's token not silently invalid</td><td><span class="pill warn">edge</span></td></tr>
+            </tbody>
+          </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="art" data-art="plan">
+        <div class="jira">
+          <div class="jira-head"><span class="jira-key">Test plan · AI feature release</span><h3>Risk-based plan: AI-generated study explanations</h3></div>
+          <div class="risk">
+            <div class="card"><span class="pill fail">High risk</span><h5 style="margin-top:10px">Hallucinated facts</h5><p>Golden dataset + claim-level faithfulness judge on every prompt/model change. Release gate: 0 unsupported claims on the critical set.</p></div>
+            <div class="card"><span class="pill fail">High risk</span><h5 style="margin-top:10px">Guardrail breaks</h5><p>Adversarial set covering prompt injection, off-topic, and unsafe advice. Must refuse or redirect every time.</p></div>
+            <div class="card"><span class="pill warn">Medium</span><h5 style="margin-top:10px">Retrieval regressions</h5><p>Track context precision/recall on fixed queries. Alert when a re-index drops the right chunk.</p></div>
+            <div class="card"><span class="pill warn">Medium</span><h5 style="margin-top:10px">Difficulty drift</h5><p>Rubric-graded sample per release, checking that explanations match the learner level. Human spot-check on disagreements.</p></div>
+            <div class="card"><span class="pill pass">Low</span><h5 style="margin-top:10px">UI / API plumbing</h5><p>Standard automated coverage in CI: UI, API contract, and service layer. Smoke on every PR.</p></div>
+            <div class="card"><span class="pill pass">Exit criteria</span><h5 style="margin-top:10px">Go / no-go</h5><p>All high-risk gates green, no open S1/S2 defects, and judge agreement with human labels ≥ 90% on the calibration set.</p></div>
+          </div>
+        </div>
+      </div>
+      <p class="illus">* Illustrative samples written for this portfolio. Real client and employer artifacts are confidential.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects" class="alt">
+  <div class="wrap">
+    <p class="eyebrow">// projects · open source</p>
+    <h2>Things I've built to test things.</h2>
+    <p class="sub">Every repo has a real problem statement and runnable code, and the README documents what broke along the way.</p>
+    <div class="filters" id="filters"></div>
+    <div class="grid" id="projGrid"></div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="wrap">
+    <p class="eyebrow">// experience</p>
+    <h2>Where I've shipped quality.</h2>
+    <p class="sub">Click a role to expand it.</p>
+    <div class="timeline" id="timeline"></div>
+  </div>
+</section>
+
+<!-- RECOMMENDATIONS -->
+<section id="recs" class="alt">
+  <div class="wrap">
+    <p class="eyebrow">// peer review</p>
+    <h2>What colleagues say.</h2>
+    <p class="sub">From my LinkedIn recommendations.</p>
+    <div class="recs">
+      <figure class="rec reveal">
+        <blockquote>He takes his time to wrap his mind around the problem, solution, and ultimately our core goals. He cares about what he works on and the outcome of his work. He regularly catches things many people would miss or just not think about. And he never says no to a challenge.</blockquote>
+        <figcaption><b>William DeAngelis</b><span>Product Manager · Ontraport</span></figcaption>
+      </figure>
+      <figure class="rec reveal">
+        <blockquote>Adem is an excellent QA engineer and a great human as well. He is thorough, prompt, courteous, and a consummate professional. Every project he tested for me was done with a high level of quality and eye for detail.</blockquote>
+        <figcaption><b>Arielle Kent</b><span>Backend Engineering Manager</span></figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- CREDENTIALS -->
+<section id="creds">
+  <div class="wrap">
+    <p class="eyebrow">// credentials</p>
+    <h2>Education &amp; certifications.</h2>
+    <div class="creds" style="margin-top:30px">
+      <div class="card reveal">
+        <h4>Education</h4>
+        <ul class="cred-list">
+          <li><b>M.S., Information Technology</b><span>University of the People · 2025 – present</span></li>
+          <li><b>B.A., Theology</b><span>University of Sarajevo · 2006 – 2011</span></li>
+        </ul>
+      </div>
+      <div class="card reveal">
+        <h4>AI &amp; testing certifications</h4>
+        <ul class="cred-list">
+          <li><b>Prompt Engineering Specialization</b><span>Vanderbilt University · 2024</span></li>
+          <li><b>Trustworthy Generative AI</b><span>Vanderbilt University</span></li>
+          <li><b>ChatGPT Advanced Data Analysis</b><span>Vanderbilt University · 2024</span></li>
+          <li><b>AI-Powered Testing</b><span>Tecno Study · 2023</span></li>
+        </ul>
+      </div>
+      <div class="card reveal">
+        <h4>More</h4>
+        <ul class="cred-list">
+          <li><b>LambdaTest Software Testing Professional</b><span>LinkedIn Learning · 2024</span></li>
+          <li><b>BDD with Cucumber &amp; Serenity</b><span>Serenity Dojo · 2023</span></li>
+          <li><b>CompTIA CySA+</b><span>LinkedIn Learning · 2023</span></li>
+          <li><b>Languages</b><span>English (fluent) · Bosnian (native) · Arabic (elementary)</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="alt">
+  <div class="wrap">
+    <div class="report reveal">
+      <div class="report-head">
+        <span class="pill pass">✓ PASSED</span>
+        <span>portfolio.spec.ts</span><span>·</span><span>all checks green</span><span style="margin-left:auto">ready for review</span>
+      </div>
+      <div class="report-body">
+        <p class="eyebrow">// next step</p>
+        <h2>Let's talk quality.</h2>
+        <p class="sub">I'm glad to talk about AI evaluation, test automation strategy, or a QA role on your team.</p>
+        <div class="cta">
+          <a class="btn primary" href="mailto:ademdenizgaric@gmail.com">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 5h16v14H4z"/><path d="m4 7 8 6 8-6"/></svg>Email me</a>
+          <button class="btn" id="copyEmail" type="button">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>Copy address</button>
+          <a class="btn" href="https://www.linkedin.com/in/adem-garic-sdet-qa/" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="btn" href="https://github.com/ademdeniz" target="_blank" rel="noopener">GitHub</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© <span id="yr">2026</span> Adem Garic</span>
+    <span>Hand-built static site, no frameworks · <a href="https://github.com/ademdeniz/ademdeniz.github.io" target="_blank" rel="noopener">source</a></span>
+  </div>
+</footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(function(){
+  "use strict";
+  var $ = function(s,r){return (r||document).querySelector(s)};
+  var $$ = function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))};
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var CHECK = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>';
+  var ARROW = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg>';
+
+  /* ---------- theme ---------- */
+  var root = document.documentElement;
+  function store(k,v){try{ if(v===undefined) return localStorage.getItem(k); localStorage.setItem(k,v);}catch(e){return null}}
+  var saved = store('theme'); if(saved==='light'||saved==='dark') root.setAttribute('data-theme',saved);
+  function isDark(){var t=root.getAttribute('data-theme'); if(t) return t==='dark'; return matchMedia('(prefers-color-scheme: dark)').matches}
+  function syncIcon(){ $('#sun').style.display=isDark()?'block':'none'; $('#moon').style.display=isDark()?'none':'block'; }
+  syncIcon();
+  $('#themeBtn').addEventListener('click',function(){ var n=isDark()?'light':'dark'; root.setAttribute('data-theme',n); store('theme',n); syncIcon(); });
+
+  /* ---------- mobile menu ---------- */
+  var menu=$('#menu'), mb=$('#menuBtn');
+  mb.addEventListener('click',function(){var o=menu.classList.toggle('open'); mb.setAttribute('aria-expanded',o)});
+  $$('#menu a').forEach(function(a){a.addEventListener('click',function(){menu.classList.remove('open');mb.setAttribute('aria-expanded',false)})});
+
+  /* ---------- terminal ---------- */
+  var tests = [
+    ['has 6+ years across web, mobile & API testing', 212],
+    ['builds LLM-as-a-judge evaluators & eval harnesses', 388],
+    ['catches hallucinations, retrieval regressions & guardrail breaks', 301],
+    ['architected an Appium 2 framework from scratch (iOS + Android)', 457],
+    ['ships Selenium, Playwright & RestAssured suites in CI', 264],
+    ['builds MCP servers & Claude-powered QA agents', 341],
+    ['writes bug reports devs can reproduce on the first try', 118],
+    ['shipped a product solo as PM, dev & QA (Pitchlio)', 196]
+  ];
+  var tb=$('#termBody'), runId=0;
+  function esc(s){return s.replace(/[&<>]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c]})}
+  function runTerm(){
+    var id=++runId, html='', cmd='npx playwright test candidate.spec.ts';
+    function alive(){return id===runId}
+    function paint(extra){tb.innerHTML=html+(extra||'')}
+    if(reduce){
+      html='<span class="p">$</span> '+cmd+'\n\n<span class="dim">Running 8 tests using 4 workers</span>\n\n';
+      tests.forEach(function(t){html+='  <span class="ok">✓</span> <span class="dim">adem ›</span> '+esc(t[0])+' <span class="dim">('+t[1]+'ms)</span>\n'});
+      html+='\n  <span class="ok b">8 passed</span> <span class="dim">(2.3s)</span>\n\n<span class="y">→</span> Role match: <span class="b">Senior QA Engineer · SDET · AI Quality</span> <span class="caret"></span>';
+      paint(); return;
+    }
+    var i=0;
+    html='<span class="p">$</span> ';
+    (function type(){
+      if(!alive())return;
+      if(i<cmd.length){html+=esc(cmd[i++]);paint('<span class="caret"></span>');setTimeout(type,28+Math.random()*40);}
+      else{html+='\n\n<span class="dim">Running 8 tests using 4 workers</span>\n\n';paint();setTimeout(function(){next(0)},450);}
+    })();
+    function next(k){
+      if(!alive())return;
+      if(k>=tests.length){
+        html+='\n  <span class="ok b">8 passed</span> <span class="dim">(2.3s)</span>\n\n';paint();
+        setTimeout(function(){ if(!alive())return; html+='<span class="y">→</span> Role match: <span class="b">Senior QA Engineer · SDET · AI Quality</span> '; paint('<span class="caret"></span>');},500);
+        return;
+      }
+      paint('  <span class="dim">◌ adem › '+esc(tests[k][0])+'</span>');
+      setTimeout(function(){
+        if(!alive())return;
+        html+='  <span class="ok">✓</span> <span class="dim">adem ›</span> '+esc(tests[k][0])+' <span class="dim">('+tests[k][1]+'ms)</span>\n';paint();next(k+1);
+      },220+tests[k][1]*.6);
+    }
+  }
+  $('#rerun').addEventListener('click',runTerm);
+  runTerm();
+
+  /* ---------- lens ---------- */
+  var LENS = {
+    ai:{
+      title:'AI Quality Engineering',
+      quote:'I define what “good” looks like when there’s no single right answer, and then I grade it at scale.',
+      chips:['LLM-as-a-judge','Eval harnesses','Golden datasets','Faithfulness','Hallucination testing','Guardrail / red-team','Retrieval (RAG) eval','Promptfoo','DeepEval','RAGAS','Claude Agent SDK','MCP','Python','Claude · GPT · Gemini'],
+      items:[
+        ['Build <b>test sets and evaluation systems</b> for AI features at TrueLearn, with automated grading, LLM-as-a-judge evaluators, and quality dashboards.'],
+        ['Test AI output for <b>factual accuracy, hallucination, inappropriate difficulty, retrieval regressions, and guardrail breaks</b>.'],
+        ['Reviewed <b>frontier-lab training data and model outputs</b> at Mercor against detailed rubrics, with evidence-based rationales for every judgment.'],
+        ['Authored an <b>MCP server QA test plan</b> covering 39 tools, a 30-test golden dataset, and 60+ targeted cases.'],
+        ['Built the <b>same faithfulness eval three ways</b> (Promptfoo, DeepEval, RAGAS), with Claude as judge and a calibration set of 10 grounded + 10 adversarial cases.']
+      ],
+      meta:'see → faithfulness-evals · playwright-mcp · appium-ai-agent'
+    },
+    sdet:{
+      title:'SDET / Test Automation',
+      quote:'I build frameworks that last: readable page objects, stable locators, and CI that people trust.',
+      chips:['Java','Python','TypeScript','Appium 2','Selenium 4','Playwright','TestNG','Cucumber (BDD)','RestAssured','Postman / Newman','Jenkins','Bitrise','GitHub Actions','BrowserStack','Allure','MySQL'],
+      items:[
+        ['<b>Architected an Appium 2 framework from scratch</b> (Java, TestNG, unified POM) for iOS and Android, growing it from PoC to a standalone project with 50+ tests in CI.'],
+        ['Built production <b>Jenkins and Bitrise pipelines</b> with BrowserStack video logs, network traces, and structured reporting on every release.'],
+        ['Maintained a business-critical <b>Selenium suite</b> and led the expansion into <b>Playwright</b>, including fixing a feature-flag header leak into third-party iframes.'],
+        ['<b>Cut flaky failures significantly</b> by refining locator strategies and synchronization logic in CI.'],
+        ['Wrote an executive-ready <b>BrowserStack vs. AWS Device Farm</b> comparison to guide infrastructure spend.']
+      ],
+      meta:'see → jenkins-appium-pipeline · self-healing-locator · e2e-api-ui-db · flaky-guard'
+    },
+    manual:{
+      title:'Manual & Exploratory QA',
+      quote:'Automation tells you what you already expected. Exploratory testing tells you what you didn’t.',
+      chips:['Exploratory testing','Risk-based testing','Test plans & cases','Regression & smoke','Acceptance criteria','Root-cause analysis','Release go/no-go','JIRA','QMetry','Confluence','Zendesk','Mobile (iOS/Android)'],
+      items:[
+        ['<b>Owned the mobile QA release cycle</b> end to end: test planning, exploratory testing, build stability, and final go/no-go sign-off.'],
+        ['Led <b>test planning, entry/exit criteria, and defect triage</b>, with test cycles tracked in QMetry for full coverage.'],
+        ['Reviewed requirements and user stories to <b>define acceptance criteria</b> and surface edge cases early with product and development.'],
+        ['Triaged <b>client-facing issues</b>, refining steps to reproduce so fixes landed fast. I worked with support through Zendesk.'],
+        ['Wrote <b>QA optimization guides</b> and Confluence documentation for onboarding and knowledge sharing.']
+      ],
+      meta:'see → sample bug report, test cases &amp; risk plan below ↓'
+    }
+  };
+  var lensPanel=$('#lensPanel');
+  function renderLens(k){
+    var L=LENS[k];
+    lensPanel.innerHTML='<div class="lens-panel"><div class="card"><h3>'+L.title+'</h3><p class="quote">'+L.quote+'</p><div class="chips">'+L.chips.map(function(c){return '<span class="chip">'+c+'</span>'}).join('')+'</div></div>'+
+      '<div class="card"><ul class="lens-list">'+L.items.map(function(i){return '<li><span class="ck">'+CHECK+'</span><span>'+i[0]+'</span></li>'}).join('')+'</ul><div class="lens-meta">'+L.meta+'</div></div></div>';
+  }
+  function wireTabs(sel,attr,onChange){
+    var tabs=$$(sel);
+    tabs.forEach(function(t,idx){
+      t.addEventListener('click',function(){tabs.forEach(function(x){x.setAttribute('aria-selected',x===t)});onChange(t.getAttribute(attr));});
+      t.addEventListener('keydown',function(e){
+        var d=e.key==='ArrowRight'?1:e.key==='ArrowLeft'?-1:0; if(!d)return;
+        var n=tabs[(idx+d+tabs.length)%tabs.length]; n.focus(); n.click();
+      });
+    });
+  }
+  wireTabs('#lens .tab','data-lens',renderLens);
+  renderLens('ai');
+  wireTabs('#artifacts .tab','data-art',function(k){$$('.art').forEach(function(a){a.classList.toggle('on',a.getAttribute('data-art')===k)})});
+
+  /* ---------- eval lab ---------- */
+  // claims: [text, supported?]
+  var ANS=[
+    {id:'A',claims:[['Metformin works mainly by reducing how much glucose your liver produces.',1],[' The most common side effects are gastrointestinal, like nausea and diarrhea.',1],[' It should be avoided if you have severe kidney problems.',1]],
+     truth:'pass',why:'Every claim maps to a source sentence. It paraphrases without adding anything.'},
+    {id:'B',claims:[['Metformin lowers blood sugar by reducing glucose production in the liver.',1],[' Common side effects include nausea and diarrhea.',1],[' Rarely, it can cause lactic acidosis, and long-term use may lower vitamin B12 levels.',0]],
+     truth:'fail',why:'This is the trap case. Lactic acidosis and B12 deficiency are real, medically accurate risks, but <b>neither is in the source</b>. The answer is true but unfaithful. Whether that should pass is a content-policy decision, and the eval encodes that policy.'},
+    {id:'C',claims:[['Metformin works by increasing insulin secretion from the pancreas.',0],[' Side effects are usually gastrointestinal, such as nausea.',1],[' It is safe for everyone, including people with kidney disease.',0]],
+     truth:'fail',why:'Two unsupported claims. One is a wrong mechanism, and the other directly contradicts the source (a guardrail-level safety failure). A reviewer should escalate this, not just score it.'}
+  ];
+  var votes={}, answersEl=$('#answers'), labRoot=$('#labRoot');
+  function renderAnswers(){
+    answersEl.innerHTML=ANS.map(function(a){
+      var sup=a.claims.filter(function(c){return c[1]}).length, tot=a.claims.length, pct=Math.round(sup/tot*100);
+      var col=pct===100?'var(--pass)':pct>=60?'var(--warn)':'var(--fail)';
+      return '<div class="ans" data-id="'+a.id+'"><div class="ans-top"><span class="ans-id">'+a.id+'</span><div class="ans-text">'+
+        a.claims.map(function(c){return '<span class="claim '+(c[1]?'s':'u')+'">'+c[0]+'</span>'}).join('')+
+        '</div></div><div class="ans-actions"><span class="lbl">your verdict</span>'+
+        '<button class="vote pass" type="button" aria-pressed="false" data-v="pass">PASS</button>'+
+        '<button class="vote fail" type="button" aria-pressed="false" data-v="fail">FAIL</button></div>'+
+        '<div class="verdict"><div class="row"><span class="pill '+(a.truth==='pass'?'pass':'fail')+'">judge: '+a.truth.toUpperCase()+'</span>'+
+        '<span class="mono" style="font-size:12.5px">faithfulness '+sup+'/'+tot+' claims · '+pct+'%</span>'+
+        '<span class="bar"><i data-w="'+pct+'" style="background:'+col+'"></i></span><span class="you"></span></div><p>'+a.why+'</p></div></div>';
+    }).join('');
+    $$('.vote',answersEl).forEach(function(b){
+      b.addEventListener('click',function(){
+        var card=b.closest('.ans'), id=card.getAttribute('data-id');
+        votes[id]=b.getAttribute('data-v');
+        $$('.vote',card).forEach(function(x){x.setAttribute('aria-pressed',x===b)});
+        if(labRoot.classList.contains('judged')) judge();
+        else $('#labScore').textContent=Object.keys(votes).length+'/3 marked'+(Object.keys(votes).length===3?'. Ready to run the judge.':'');
+      });
+    });
+  }
+  function judge(){
+    labRoot.classList.add('judged');
+    var right=0, n=0;
+    ANS.forEach(function(a){
+      var card=$('.ans[data-id="'+a.id+'"]',answersEl), you=$('.you',card), v=votes[a.id];
+      if(v){n++; if(v===a.truth){right++; you.innerHTML='<span class="pill pass">you: ✓ match</span>';card.style.borderColor='color-mix(in srgb,var(--pass) 45%,var(--line))'}
+        else{you.innerHTML='<span class="pill fail">you: ✗ mismatch</span>';card.style.borderColor='color-mix(in srgb,var(--fail) 45%,var(--line))'}}
+      else{you.innerHTML='<span class="pill warn">not marked</span>';card.style.borderColor=''}
+    });
+    requestAnimationFrame(function(){$$('.bar i',answersEl).forEach(function(i){i.style.width=i.getAttribute('data-w')+'%'})});
+    var msg='Judge agreement: <b>'+right+'/3</b>. ';
+    msg+= right===3?'Nice. You caught the “true but unsourced” trap in B.':
+          (votes.B==='pass'?'B is the classic miss: medically correct, but not in the source.':'Green highlights are supported claims; red ones are unsupported.');
+    $('#labScore').innerHTML=msg;
+  }
+  $('#runJudge').addEventListener('click',judge);
+  $('#resetLab').addEventListener('click',function(){votes={};labRoot.classList.remove('judged');renderAnswers();$('#labScore').textContent='Mark all three answers, then run the judge.'});
+  renderAnswers();
+
+  /* ---------- projects ---------- */
+  var IC={
+    ai:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></svg>',
+    web:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M7 6.5h.01M10 6.5h.01"/></svg>',
+    mobile:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2"/></svg>',
+    api:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6l-6 6 6 6M16 6l6 6-6 6"/></svg>',
+    ci:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="2.5"/><circle cx="6" cy="18" r="2.5"/><circle cx="18" cy="12" r="2.5"/><path d="M6 8.5v7M8.3 7l7.4 4M8.3 17l7.4-4"/></svg>',
+    product:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l9 5v10l-9 5-9-5V7z"/><path d="M3 7l9 5 9-5M12 12v10"/></svg>'
+  };
+  var COL={ai:['#8b5cf6','rgba(139,92,246,.14)'],web:['#0ea5e9','rgba(14,165,233,.14)'],mobile:['#f97316','rgba(249,115,22,.14)'],api:['#14b8a6','rgba(20,184,166,.14)'],ci:['#e11d48','rgba(225,29,72,.13)'],product:['#10b981','rgba(16,185,129,.14)']};
+  var P=[
+    {n:'faithfulness-evals',k:'ai',tags:['ai'],kind:'AI evaluation · Python',u:'https://github.com/ademdeniz/faithfulness-evals',
+     d:'The same faithfulness eval for medical exam-prep content, built three ways in Promptfoo, DeepEval, and RAGAS, all with Claude as the judge. It includes a live multi-model comparison and a controlled experiment that isolates why answers fail.',
+     hl:'Larger models sometimes scored worse: they added true but unsourced detail. When the source was enriched with that detail, the verdicts flipped.',
+     s:['Python','Promptfoo','DeepEval','RAGAS','Claude']},
+    {n:'playwright-mcp',k:'ai',tags:['ai','web'],kind:'MCP server · TypeScript',u:'https://github.com/ademdeniz/playwright-mcp',
+     d:'An MCP server that gives an LLM a real browser: 8 tools (navigate, click, fill, assert, screenshot, and more) over stdio for Claude Desktop and SSE for Docker-hosted clients.',
+     hl:'Hardened against real agent failure modes: it rejects out-of-order concurrent tool calls with instructive errors so the agent can recover on its own.',
+     s:['TypeScript','Playwright','MCP','Groq','Docker']},
+    {n:'appium-ai-agent',k:'ai',tags:['ai','mobile'],kind:'AI agent · Python + React',u:'https://github.com/ademdeniz/appium-ai-agent',
+     d:'When a mobile test fails, the agent captures Appium session state, logs, and screenshots, reasons through Claude about whether the cause is the selector, timing, or a real bug, and proposes a fix.',
+     hl:'Streams the agent’s reasoning live to a React dashboard over SSE, cutting hours of manual triage down to minutes.',
+     s:['Python','FastAPI','Claude MCP','Appium 2','React']},
+    {n:'playwright-e2e',k:'web',tags:['web','api','ci','ai'],kind:'E2E suite · TypeScript',u:'https://github.com/ademdeniz/playwright-e2e',
+     d:'A modern E2E suite covering UI, auth, and API flows, with typed POMs, custom fixtures, parallel cross-browser runs, and GitHub Actions: smoke on every PR, the full suite on merge.',
+     hl:'Playwright’s planner, generator, and healer agents found 2 coverage gaps and a hardcoded-assertion bug that had been hiding in the suite.',
+     s:['TypeScript','Playwright','GitHub Actions','POM']},
+    {n:'jenkins-appium-pipeline',k:'ci',tags:['ci','mobile'],kind:'CI/CD · Jenkins + Java',u:'https://github.com/ademdeniz/jenkins-appium-pipeline',
+     d:'A declarative Jenkins pipeline for iOS and Android Appium tests, with parallel platform stages, smoke/regression tag selection, and a one-parameter switch between local simulators and BrowserStack.',
+     hl:'Allure reports with failure screenshots attached automatically, plus Slack alerts that link straight to the failing build.',
+     s:['Jenkins','Java','Appium 2','BrowserStack','Allure']},
+    {n:'self-healing-locator',k:'web',tags:['web'],kind:'Framework module · Java',u:'https://github.com/ademdeniz/self-healing-locator',
+     d:'A Selenium module that walks a prioritized fallback chain of locators when the primary one fails, caches the winning strategy, and logs every heal.',
+     hl:'Generates an HTML healing report that lists exactly which locators need updating, so tests stay green without hiding the problem.',
+     s:['Java 21','Selenium 4','TestNG','Allure']},
+    {n:'e2e-api-ui-db',k:'api',tags:['api','web'],kind:'Full-stack E2E · Java',u:'https://github.com/ademdeniz/e2e-api-ui-db',
+     d:'Tests all three layers in one flow: create data via the REST API, verify it in the browser UI, and confirm it in the database. It covers 5 real flows across GET, POST, PUT, and DELETE.',
+     hl:'Built to catch the bugs that live between layers, like a 204 on delete when the record is still in the database.',
+     s:['Java 21','RestAssured','Selenium','JDBC / SQLite']},
+    {n:'flaky-guard',k:'ci',tags:['ci'],kind:'CLI tool · Python',u:'https://github.com/ademdeniz/flaky-guard',
+     d:'Ingests JUnit XML from any CI (TestNG, pytest, Jest, Surefire), tracks outcomes across runs in SQLite, and ranks flaky tests by a status-flip score.',
+     hl:'Severity tiers from stable to critical, with zero dependencies, so teams know which flaky test to fix first.',
+     s:['Python','SQLite','JUnit XML','Zero deps']},
+    {n:'Pitchlio',k:'product',tags:['ai','product'],kind:'Shipped product · PM + Dev + QA',u:'https://whop.com/pitchlio',
+     d:'An AI job-search automation tool that scrapes 9 job boards, scores postings 0–100 against a resume, flags company red flags, and tailors the résumé and cover letter. It ships as a desktop app and an Android app, with Claude, GPT, and Gemini support.',
+     hl:'I was the whole team. I wrote the test plans for desktop and mobile covering API key validation, model switching, scoring accuracy, and edge cases.',
+     s:['Python','Streamlit','Playwright','SQLite','Railway','Multi-LLM']}
+  ];
+  var F=[['all','All'],['ai','AI Quality'],['web','Web'],['mobile','Mobile'],['api','API'],['ci','CI/CD'],['product','Product']];
+  var grid=$('#projGrid');
+  grid.innerHTML=P.map(function(p){
+    var c=COL[p.k];
+    return '<a class="proj reveal" href="'+p.u+'" target="_blank" rel="noopener" data-tags="'+p.tags.join(' ')+'">'+
+      '<span class="arrow">'+ARROW+'</span>'+
+      '<div class="proj-top"><span class="proj-ic" style="color:'+c[0]+';background:'+c[1]+'">'+IC[p.k]+'</span><div><h3>'+p.n+'</h3><div class="kind">'+p.kind+'</div></div></div>'+
+      '<p>'+p.d+'</p><div class="hl"><b>RESULT</b>'+p.hl+'</div><div class="chips">'+p.s.map(function(s){return '<span class="chip">'+s+'</span>'}).join('')+'</div></a>';
+  }).join('');
+  var fEl=$('#filters');
+  fEl.innerHTML=F.map(function(f,i){
+    var n=f[0]==='all'?P.length:P.filter(function(p){return p.tags.indexOf(f[0])>-1}).length;
+    return '<button class="filter" type="button" aria-pressed="'+(i===0)+'" data-f="'+f[0]+'">'+f[1]+'<span class="c">'+n+'</span></button>';
+  }).join('');
+  $$('.filter',fEl).forEach(function(b){
+    b.addEventListener('click',function(){
+      var f=b.getAttribute('data-f');
+      $$('.filter',fEl).forEach(function(x){x.setAttribute('aria-pressed',x===b)});
+      $$('.proj',grid).forEach(function(p){
+        var show=f==='all'||p.getAttribute('data-tags').split(' ').indexOf(f)>-1;
+        p.classList.toggle('hide',!show); if(show)p.classList.add('in');
+      });
+    });
+  });
+
+  /* ---------- experience ---------- */
+  var J=[
+    {t:'QA Engineer, AI',c:'TrueLearn',w:'Aug 2026 — Present',loc:'Remote',now:1,logo:['TL','#7c3aed'],b:[
+      'Build <b>test sets and evaluation systems</b> for AI features, defining what “good” looks like where there’s no single right answer.',
+      'Build <b>automated grading at scale</b>: LLM-as-a-judge evaluators, test harnesses, and quality dashboards.',
+      'Test AI output for <b>factual accuracy, hallucination, inappropriate difficulty, retrieval regressions, and guardrail breaks</b>.',
+      'Write and maintain test plans and cases across functional, regression, integration, and E2E testing. Perform exploratory, smoke, and regression testing.',
+      'Maintain automated coverage across <b>UI, API, and service layers</b> in CI.'],s:['LLM-as-a-judge','Eval harnesses','Python','CI']},
+    {t:'QA Reviewer (Contract)',c:'Mercor',w:'Aug 2026 — Sep 2026',loc:'Remote',logo:['M','#0f172a'],b:[
+      'Reviewed and quality-checked <b>AI training data and model outputs</b> for a frontier AI lab client against detailed project rubrics.',
+      'Flagged <b>factual errors, hallucinations, instruction-following failures, and rubric violations</b>, with clear, evidence-based rationales.',
+      'Audited other contributors’ submissions for accuracy and guideline adherence to keep the dataset consistent.'],s:['RLHF data QA','Rubric grading','Hallucination review']},
+    {t:'Founder · PM, Developer & QA Engineer',c:'Pitchlio',w:'2026 — Present',loc:'Independent',now:1,logo:['P','#059669'],b:[
+      'Shipped a <b>Python desktop tool</b> (Streamlit, SQLite, Playwright) and an <b>Android app</b> (Base44, Railway) with multi-LLM support for Claude, GPT, and Gemini.',
+      'Designed <b>prompt caching</b> for batch resume scoring and a <b>voice-matching pass</b> for tailoring driven by a writing sample.',
+      'Authored <b>full mobile and desktop test plans</b>: UI flows, API key validation, model switching, scoring accuracy, backend responses, and edge cases.',
+      'Available on Gumroad and Whop; the Android app is in Google Play closed testing.'],s:['Python','Streamlit','Multi-LLM','Test planning']},
+    {t:'Software Development Engineer in Test',c:'Ontraport',w:'Feb 2024 — Apr 2026',loc:'Remote',logo:['O','#2563eb'],b:[
+      'Designed and shipped an <b>AI-powered QA agent</b> (Claude Agent SDK + FastAPI) integrated with the in-house Appium framework for multi-turn test execution, failure triage, and automated root-cause analysis.',
+      'Authored an <b>MCP server QA test plan</b>: 39 tools, a 30-test golden dataset, and 60+ targeted cases across CRUD, query, commerce, and task surfaces.',
+      '<b>Architected an Appium 2 framework from scratch</b> (Java, TestNG, unified POM) for iOS and Android, growing it from PoC to a standalone project with 50+ tests in CI.',
+      'Built <b>Jenkins and Bitrise pipelines</b> with BrowserStack video logs and network traces. Owned the mobile release cycle through go/no-go sign-off.',
+      'Maintained the Selenium web suite and led the expansion into <b>Playwright</b>. <b>Cut flaky failures significantly</b> through locator and sync fixes.',
+      'Wrote an executive-ready <b>BrowserStack vs. AWS Device Farm</b> cost and operations comparison.'],s:['Appium 2','Java','Playwright','Jenkins','Bitrise','Claude Agent SDK','MCP']},
+    {t:'Software Development Engineer in Test',c:'Ontraport',w:'Oct 2022 — Nov 2023',loc:'Remote',logo:['O','#2563eb'],b:[
+      'Drove adoption of <b>automated regression and smoke testing</b> across the web stack (Java, Selenium, Cucumber, TestNG) using Page Object Model design.',
+      'Led <b>test planning and test case design</b>, with cycles tracked in QMetry. Ran regression with Selenium Grid and Jenkins.',
+      'Did code reviews in Git/GitHub and took part in release management with TeamCity, JIRA, and Slack.',
+      'Triaged and debugged <b>client-facing issues</b>, refining reproduction steps for fast resolution. Documented processes in Confluence.'],s:['Selenium','Cucumber','TestNG','QMetry','Selenium Grid']},
+    {t:'QA Analyst / Automation Engineer',c:'Mersys LLC',w:'Aug 2019 — Sep 2022',loc:'Remote',logo:['MS','#ea580c'],b:[
+      'Owned <b>functional, regression, smoke, and exploratory testing</b> across web and API, with test cases, plans, and requirements traceability.',
+      'Built automation with <b>Java, Selenium, TestNG, and Cucumber (BDD)</b>. Validated APIs with Postman and Newman, and tested data integrity in MySQL.',
+      'Led the <b>defect lifecycle in JIRA</b>: reproducible reports, severity/priority triage, and QA optimization guides.',
+      'Defined <b>acceptance criteria</b> from user stories. Used Maven and Jenkins for CI, and worked with support through Zendesk.'],s:['Java','Selenium','Cucumber','Postman','MySQL','JIRA']}
+  ];
+  $('#timeline').innerHTML=J.map(function(j,i){
+    return '<details class="job reveal"'+(i===0?' open':'')+'><summary><span class="logo" style="background:'+j.logo[1]+'">'+j.logo[0]+'</span>'+
+      '<div><h3>'+j.t+(j.now?'<span class="now">NOW</span>':'')+'</h3><div class="co">'+j.c+' · '+j.loc+'</div></div>'+
+      '<span class="when">'+j.w+'<span class="chev">▾</span></span></summary>'+
+      '<div class="job-body"><ul>'+j.b.map(function(x){return '<li>'+x+'</li>'}).join('')+'</ul><div class="chips">'+j.s.map(function(s){return '<span class="chip">'+s+'</span>'}).join('')+'</div></div></details>';
+  }).join('');
+
+  /* ---------- copy email ---------- */
+  var toast=$('#toast');
+  function showToast(m){toast.textContent=m;toast.classList.add('show');setTimeout(function(){toast.classList.remove('show')},1800)}
+  $('#copyEmail').addEventListener('click',function(){
+    var e='ademdenizgaric@gmail.com';
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(e).then(function(){showToast('Email copied ✓')},function(){showToast(e)})}
+    else showToast(e);
+  });
+
+  /* ---------- reveal + counters ---------- */
+  function countUp(el){
+    var target=+el.getAttribute('data-count'), suf=el.getAttribute('data-suffix')||'', t0=null;
+    if(reduce){el.textContent=target+suf;return}
+    function step(ts){if(!t0)t0=ts;var p=Math.min((ts-t0)/1100,1),v=Math.round(target*(1-Math.pow(1-p,3)));el.textContent=v+suf;if(p<1)requestAnimationFrame(step)}
+    requestAnimationFrame(step);
+  }
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');$$('[data-count]',e.target).forEach(countUp);io.unobserve(e.target)}})},{threshold:.12});
+    $$('.reveal').forEach(function(el){io.observe(el)});
+  } else { $$('.reveal').forEach(function(el){el.classList.add('in')}); }
+  $('#yr').textContent=new Date().getFullYear();
+})();
+</script>
+</body>
+</html>
