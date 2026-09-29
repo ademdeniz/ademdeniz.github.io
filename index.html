@@ -270,14 +270,21 @@ table.tc td:first-child{font-family:var(--mono);color:var(--faint);white-space:n
 .now{font-family:var(--mono);font-size:11px;font-weight:700;color:var(--pass);background:var(--pass-soft);padding:2px 8px;border-radius:99px;margin-left:8px;vertical-align:2px}
 
 /* recs */
-.recs{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-@media (max-width:860px){.recs{grid-template-columns:1fr}}
-.rec{margin:0;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:26px;position:relative}
-.rec::before{content:"\201C";position:absolute;top:6px;right:20px;font-size:84px;line-height:1;color:var(--accent-soft);font-family:Georgia,serif}
-.rec blockquote{margin:0 0 18px;font-size:16px;color:var(--text);position:relative}
-.rec figcaption{font-size:14px}
-.rec figcaption b{display:block}
-.rec figcaption span{color:var(--faint);font-size:13px}
+.rec-top{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:22px}
+.rec-top .filters{margin:0}
+.rec-count{font-family:var(--mono);font-size:12.5px;color:var(--faint);margin-left:auto}
+.recs{columns:2 360px;column-gap:18px}
+.rec{break-inside:avoid;margin:0 0 18px;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:24px;position:relative;display:block;animation:fade .35s ease}
+.rec.hide{display:none}
+.rec::before{content:"\201C";position:absolute;top:4px;right:18px;font-size:80px;line-height:1;color:var(--accent-soft);font-family:Georgia,serif}
+.rec .theme{display:inline-block;font-family:var(--mono);font-size:11.5px;font-weight:700;color:var(--accent);background:var(--accent-soft);padding:3px 9px;border-radius:6px;margin-bottom:12px}
+.rec blockquote{margin:0 0 18px;font-size:15.5px;color:var(--text);position:relative;line-height:1.65}
+.rec figcaption{display:grid;grid-template-columns:40px 1fr;gap:12px;align-items:center;font-size:14px;padding-top:16px;border-top:1px solid var(--line)}
+.rec .av{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;font-weight:700;font-size:13.5px;color:#fff}
+.rec figcaption b{display:block;font-weight:600}
+.rec figcaption span{display:block;color:var(--muted);font-size:13px;line-height:1.4}
+.rec figcaption em{display:block;font-style:normal;color:var(--faint);font-size:12px;font-family:var(--mono);margin-top:2px}
+.rec-more{display:flex;justify-content:center;margin-top:6px}
 
 /* creds */
 .creds{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
@@ -566,17 +573,14 @@ footer a{color:var(--muted)}
   <div class="wrap">
     <p class="eyebrow">// peer review</p>
     <h2>What colleagues say.</h2>
-    <p class="sub">From my LinkedIn recommendations.</p>
-    <div class="recs">
-      <figure class="rec reveal">
-        <blockquote>He takes his time to wrap his mind around the problem, solution, and ultimately our core goals. He cares about what he works on and the outcome of his work. He regularly catches things many people would miss or just not think about. And he never says no to a challenge.</blockquote>
-        <figcaption><b>William DeAngelis</b><span>Product Manager · Ontraport</span></figcaption>
-      </figure>
-      <figure class="rec reveal">
-        <blockquote>Adem is an excellent QA engineer and a great human as well. He is thorough, prompt, courteous, and a consummate professional. Every project he tested for me was done with a high level of quality and eye for detail.</blockquote>
-        <figcaption><b>Arielle Kent</b><span>Backend Engineering Manager</span></figcaption>
-      </figure>
+    <p class="sub">Nine LinkedIn recommendations from managers, QA teammates, and cross-functional partners. The excerpts are quoted word for word.</p>
+    <div class="rec-top">
+      <div class="filters" id="recFilters"></div>
+      <span class="rec-count" id="recCount"></span>
     </div>
+    <div class="recs" id="recGrid"></div>
+    <div class="rec-more"><button class="btn" id="recMore" type="button"></button></div>
+    <p class="illus" style="text-align:center">Full recommendations on <a href="https://www.linkedin.com/in/adem-garic-sdet-qa/details/recommendations/" target="_blank" rel="noopener">LinkedIn</a>.</p>
   </div>
 </section>
 
@@ -948,6 +952,65 @@ footer a{color:var(--muted)}
       '<span class="when">'+j.w+'<span class="chev">▾</span></span></summary>'+
       '<div class="job-body"><ul>'+j.b.map(function(x){return '<li>'+x+'</li>'}).join('')+'</ul><div class="chips">'+j.s.map(function(s){return '<span class="chip">'+s+'</span>'}).join('')+'</div></div></details>';
   }).join('');
+
+
+  /* ---------- recommendations ---------- */
+  var R=[
+    {n:'Anthony Baldwin',t:'Lead QA Engineer at Ontraport',rel:'team',r:'Same QA team',th:'Appium framework',c:'#2563eb',
+     q:'Adem expertly managed our staging environment, resolving Selenium issues and enhancing product quality with his Java and Selenium proficiency. His creation of an innovative Appium framework significantly advanced our mobile testing. Adem’s meticulous approach to testing, plan development, and execution, combined with his collaborative spirit, made him an invaluable asset.'},
+    {n:'Kimberli R. Martinez',t:'CAPM Project Manager · Release Manager · QA Analyst',rel:'team',r:'Same QA team · 3 years',th:'BrowserStack SME',c:'#db2777',
+     q:'He wrote and maintained automated tests in Selenium, triaged automation failures, and served as our subject matter expert for BrowserStack. His technical knowledge ran deep, but what made him truly valuable was his ability to take complex automation concepts and make them accessible to the rest of the team.'},
+    {n:'Pranitha Jasti',t:'Director, Technical Quality Assurance at OPEN Health',rel:'mgr',r:'Managed Adem directly',th:'Built an automation program',c:'#7c3aed',
+     q:'Adem is one of the humblest QA engineers I’ve worked with, who not only has the technical chops but is also an excellent team player. He helped establish our testing automation program. As a QA engineer he has a strong grasp of the right balance of scenarios to test, what can be automated.'},
+    {n:'William DeAngelis',t:'Product Manager · Ontraport',rel:'cross',r:'Senior colleague',th:'Catches what others miss',c:'#059669',
+     q:'He takes his time to wrap his mind around the problem, solution, and ultimately our core goals. He cares about what he works on and the outcome of his work. He regularly catches things many people would miss or just not think about. And he never says no to a challenge.'},
+    {n:'Vinh Lam',t:'Feature Development Director at Ontraport',rel:'mgr',r:'Managed Adem directly',th:'Dependable ownership',c:'#0891b2',
+     q:'He is a disciplined contributor and has a strong work ethic to get things done. I trusted that any task I gave to Adem would get done without a ton of supervision. Adem was always a dependable and calming presence on a busy team.'},
+    {n:'Steve Layman',t:'Senior QA Engineer / SDET · Former QA Manager',rel:'team',r:'Same QA team',th:'Framework design',c:'#ea580c',
+     q:'Adem demonstrated outstanding technical expertise in designing and implementing automated test frameworks. His attention to detail and analytical skills ensured the early identification and resolution of potential issues, contributing to the overall efficiency of our development cycle.'},
+    {n:'Arielle Kent',t:'Backend Engineering Manager',rel:'cross',r:'Senior colleague',th:'Quality & detail',c:'#4f46e5',
+     q:'Adem is an excellent QA engineer and a great human as well. He is thorough, prompt, courteous, and a consummate professional. Every project he tested for me was done with a high level of quality and eye for detail.'},
+    {n:'Caitlin Carlson (Trude)',t:'People Operations Specialist at Ontraport',rel:'cross',r:'Different team · ran his performance review',th:'Mobile + automation impact',c:'#65a30d',
+     q:'His impact on the company’s mobile development team, as well as the splash he made in the automated testing space, helped push Ontraport further towards its growth goals. Adem’s passion for researching and learning about new technologies is unmatched.'},
+    {n:'Richard White',t:'QA Analyst · SaaS · 9 yrs',rel:'team',r:'Same QA team',th:'Client-issue triage',c:'#e11d48',
+     q:'Adem jumped quickly in to writing automated tests and working on projects. On top of those items, Adem was also responsible for reviewing and triaging client facing issues. This included verifying steps or refining steps to reproduce an error, troubleshooting, and debugging.'}
+  ];
+  var RF=[['all','All'],['mgr','Managers'],['team','QA teammates'],['cross','Cross-functional']];
+  var recGrid=$('#recGrid'), recMore=$('#recMore'), recF='all', recAll=false, INIT=4;
+  function initials(n){var w=n.replace(/\(.*?\)/g,'').trim().split(/\s+/);return w[0][0]+w[w.length-1][0]}
+  recGrid.innerHTML=R.map(function(r){
+    return '<figure class="rec" data-rel="'+r.rel+'"><span class="theme">'+r.th+'</span><blockquote>'+r.q+'</blockquote>'+
+      '<figcaption><span class="av" style="background:'+r.c+'">'+initials(r.n)+'</span><div><b>'+r.n+'</b><span>'+r.t+'</span><em>'+r.r+'</em></div></figcaption></figure>';
+  }).join('');
+  $('#recFilters').innerHTML=RF.map(function(f,i){
+    var n=f[0]==='all'?R.length:R.filter(function(r){return r.rel===f[0]}).length;
+    return '<button class="filter" type="button" aria-pressed="'+(i===0)+'" data-f="'+f[0]+'">'+f[1]+'<span class="c">'+n+'</span></button>';
+  }).join('');
+  function renderRecs(){
+    var cards=$$('.rec',recGrid), shown=0, match=0;
+    cards.forEach(function(c){
+      var ok=recF==='all'||c.getAttribute('data-rel')===recF;
+      if(ok)match++;
+      var vis=ok&&(recAll||recF!=='all'||match<=INIT);
+      c.classList.toggle('hide',!vis); if(vis)shown++;
+    });
+    $('#recCount').textContent='showing '+shown+' of '+R.length;
+    var needMore=recF==='all'&&match>INIT;
+    recMore.parentNode.style.display=needMore?'flex':'none';
+    recMore.textContent=recAll?'Show fewer':'Show all '+R.length+' recommendations';
+  }
+  $$('.filter',$('#recFilters')).forEach(function(b){
+    b.addEventListener('click',function(){
+      recF=b.getAttribute('data-f');
+      $$('.filter',$('#recFilters')).forEach(function(x){x.setAttribute('aria-pressed',x===b)});
+      renderRecs();
+    });
+  });
+  recMore.addEventListener('click',function(){
+    recAll=!recAll; renderRecs();
+    if(!recAll) $('#recs').scrollIntoView({behavior:reduce?'auto':'smooth'});
+  });
+  renderRecs();
 
   /* ---------- copy email ---------- */
   var toast=$('#toast');
