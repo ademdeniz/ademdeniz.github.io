@@ -228,11 +228,6 @@ table.tc td:first-child{font-family:var(--mono);color:var(--faint);white-space:n
 .illus{font-size:12.5px;color:var(--faint);margin-top:12px;font-family:var(--mono)}
 
 /* projects */
-.filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:26px}
-.filter{font-family:var(--mono);font-size:12.5px;padding:7px 13px;border-radius:9px;border:1px solid var(--line);background:var(--panel);color:var(--muted);cursor:pointer;transition:.15s}
-.filter:hover{color:var(--text);border-color:var(--line-2)}
-.filter[aria-pressed="true"]{background:var(--text);color:var(--bg);border-color:var(--text)}
-.filter .c{opacity:.6;margin-left:4px}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px}
 @media (max-width:420px){.grid{grid-template-columns:1fr}}
 .proj{display:flex;flex-direction:column;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:22px;text-decoration:none;transition:transform .2s,border-color .2s,box-shadow .2s;position:relative}
@@ -548,7 +543,7 @@ footer a{color:var(--muted)}
     <p class="eyebrow">// projects · open source</p>
     <h2>Things I've built to test things.</h2>
     <p class="sub">Every repo has a real problem statement and runnable code, and the README documents what broke along the way.</p>
-    <div class="filters" id="filters"></div>
+    <div class="tabs" role="tablist" aria-label="Project categories" id="projTabs" style="margin-bottom:26px"></div>
     <div class="grid" id="projGrid"></div>
   </div>
 </section>
@@ -880,30 +875,23 @@ footer a{color:var(--muted)}
      hl:'I was the whole team. I wrote the test plans for desktop and mobile covering API key validation, model switching, scoring accuracy, and edge cases.',
      s:['Python','Streamlit','Playwright','SQLite','Railway','Multi-LLM']}
   ];
-  var F=[['all','All'],['ai','AI Quality'],['web','Web'],['mobile','Mobile'],['api','API'],['ci','CI/CD'],['product','Product']];
+  var F=[['ai','AI Quality'],['web','Web'],['mobile','Mobile'],['api','API'],['ci','CI/CD'],['product','Product']];
   var grid=$('#projGrid');
   grid.innerHTML=P.map(function(p){
     var c=COL[p.k];
-    return '<a class="proj reveal" href="'+p.u+'" target="_blank" rel="noopener" data-tags="'+p.tags.join(' ')+'">'+
+    return '<a class="proj" href="'+p.u+'" target="_blank" rel="noopener" data-tags="'+p.tags.join(' ')+'">'+
       '<span class="arrow">'+ARROW+'</span>'+
       '<div class="proj-top"><span class="proj-ic" style="color:'+c[0]+';background:'+c[1]+'">'+IC[p.k]+'</span><div><h3>'+p.n+'</h3><div class="kind">'+p.kind+'</div></div></div>'+
       '<p>'+p.d+'</p><div class="hl"><b>RESULT</b>'+p.hl+'</div><div class="chips">'+p.s.map(function(s){return '<span class="chip">'+s+'</span>'}).join('')+'</div></a>';
   }).join('');
-  var fEl=$('#filters');
-  fEl.innerHTML=F.map(function(f,i){
-    var n=f[0]==='all'?P.length:P.filter(function(p){return p.tags.indexOf(f[0])>-1}).length;
-    return '<button class="filter" type="button" aria-pressed="'+(i===0)+'" data-f="'+f[0]+'">'+f[1]+'<span class="c">'+n+'</span></button>';
+  $('#projTabs').innerHTML=F.map(function(f,i){
+    return '<button class="tab" role="tab" type="button" aria-selected="'+(i===0)+'" aria-controls="projGrid" data-cat="'+f[0]+'">'+f[1]+'</button>';
   }).join('');
-  $$('.filter',fEl).forEach(function(b){
-    b.addEventListener('click',function(){
-      var f=b.getAttribute('data-f');
-      $$('.filter',fEl).forEach(function(x){x.setAttribute('aria-pressed',x===b)});
-      $$('.proj',grid).forEach(function(p){
-        var show=f==='all'||p.getAttribute('data-tags').split(' ').indexOf(f)>-1;
-        p.classList.toggle('hide',!show); if(show)p.classList.add('in');
-      });
-    });
-  });
+  function showProjects(cat){
+    $$('.proj',grid).forEach(function(p){p.classList.toggle('hide',p.getAttribute('data-tags').split(' ').indexOf(cat)<0)});
+  }
+  wireTabs('#projTabs .tab','data-cat',showProjects);
+  showProjects('ai');
 
   /* ---------- experience ---------- */
   var J=[
