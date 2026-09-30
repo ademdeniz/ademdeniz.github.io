@@ -157,8 +157,13 @@ h2{font-size:clamp(32px,4.6vw,48px);line-height:1.08;margin:0 0 16px}
 .book.open .more{display:inline}
 .book .toggle{background:none;border:0;padding:0;color:var(--wri);font-weight:600;font-size:14px;cursor:pointer;font-family:inherit}
 .book .btn{margin-top:6px;font-size:14px;padding:9px 15px}
-.wip{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:22px}
-@media (max-width:880px){.wip{grid-template-columns:1fr}}
+.wip{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:22px}
+@media (max-width:980px){.wip{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:560px){.wip{grid-template-columns:1fr}}
+.wlink{display:block;text-decoration:none;position:relative;transition:opacity .6s ease,transform .2s,box-shadow .2s,border-color .2s}
+.wlink:hover{transform:translateY(-3px);box-shadow:var(--shadow);border-color:var(--line-2)}
+.wlink .go{position:absolute;top:20px;right:20px;color:var(--faint)}
+.wlink:hover .go{color:var(--wri)}
 .wip .card h4{font-family:var(--serif);font-size:19px;margin:8px 0 6px;font-weight:600}
 .wip .card p{margin:0;color:var(--muted);font-size:14.5px}
 .tag{display:inline-block;font-size:11.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:3px 9px;border-radius:999px;background:var(--wri-soft);color:var(--wri)}
@@ -384,8 +389,9 @@ footer a{color:var(--muted)}
     </div>
 
     <div class="wip">
+      <a class="card reveal wlink" href="https://denizadem.substack.com/" target="_blank" rel="noopener"><span class="tag">Substack</span><span class="go">↗</span><h4>America is Hollywood</h4><p>Poetry, stories, and personal reflections from a Bosnian writer living in America.</p></a>
+      <a class="card reveal wlink" href="https://medium.com/@bejadembej" target="_blank" rel="noopener"><span class="tag">Medium</span><span class="go">↗</span><h4>Adem Deniz Garic</h4><p>Essays, childhood stories, and poems, published in Readers Club and Pen With Paper.</p></a>
       <div class="card reveal"><span class="tag">In progress</span><h4>Halka</h4><p>A Bosnian-language literary novel, currently being written.</p></div>
-      <div class="card reveal"><span class="tag">Substack</span><h4>The Imam in the Crime Blotter</h4><p>My literary publication for short fiction, essays, and reflections.</p></div>
       <div class="card reveal"><span class="tag">Lyrics</span><h4>Ilahije (nasheeds)</h4><p>Devotional song lyrics written for and performed at community religious gatherings.</p></div>
     </div>
   </div>
