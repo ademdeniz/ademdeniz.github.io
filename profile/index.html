@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Adem Garic · Engineer, Scholar, Author</title>
+<meta name="description" content="Adem Garic: AI quality engineer, imam and educator, published author and Bosnian–English literary translator, and licensed Pennsylvania real estate agent.">
+<meta property="og:title" content="Adem Garic · Engineer, Scholar, Author">
+<meta property="og:description" content="Different worlds, same instinct: find the detail everyone else missed.">
+<meta property="og:type" content="profile">
+<meta property="og:url" content="https://ademdeniz.github.io/profile/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23b4532a'/%3E%3Ctext x='32' y='44' font-family='Georgia,serif' font-size='34' font-weight='700' text-anchor='middle' fill='%23fdf8f1'%3EA%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#fbf7f1; --bg-2:#f4ede2; --panel:#ffffff; --panel-2:#f7f1e8;
+  --text:#1f1a14; --muted:#5f564b; --faint:#948a7d;
+  --line:#e8dfd1; --line-2:#d9ccb9;
+  --accent:#b4532a; --accent-soft:#f6e3d8;
+  --eng:#4f46e5; --eng-soft:#e6e5fb;
+  --sch:#0f766e; --sch-soft:#d9efec;
+  --wri:#b45309; --wri-soft:#f8e8d2;
+  --est:#1d4ed8; --est-soft:#dde6fa;
+  --shadow:0 1px 2px rgba(60,40,20,.05),0 12px 36px rgba(60,40,20,.08);
+  --radius:16px;
+  --serif:"Fraunces",Georgia,"Times New Roman",serif;
+  --sans:"Inter",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#15120f; --bg-2:#1b1713; --panel:#201b16; --panel-2:#27211b;
+    --text:#f3ece2; --muted:#b9ad9e; --faint:#857a6d;
+    --line:#302920; --line-2:#3d342a;
+    --accent:#e08a5f; --accent-soft:rgba(224,138,95,.14);
+    --eng:#a5b4fc; --eng-soft:rgba(165,180,252,.13);
+    --sch:#5eead4; --sch-soft:rgba(94,234,212,.12);
+    --wri:#fbbf24; --wri-soft:rgba(251,191,36,.12);
+    --est:#93c5fd; --est-soft:rgba(147,197,253,.13);
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 12px 40px rgba(0,0,0,.35);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#15120f; --bg-2:#1b1713; --panel:#201b16; --panel-2:#27211b;
+  --text:#f3ece2; --muted:#b9ad9e; --faint:#857a6d;
+  --line:#302920; --line-2:#3d342a;
+  --accent:#e08a5f; --accent-soft:rgba(224,138,95,.14);
+  --eng:#a5b4fc; --eng-soft:rgba(165,180,252,.13);
+  --sch:#5eead4; --sch-soft:rgba(94,234,212,.12);
+  --wri:#fbbf24; --wri-soft:rgba(251,191,36,.12);
+  --est:#93c5fd; --est-soft:rgba(147,197,253,.13);
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 12px 40px rgba(0,0,0,.35);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+h1,h2,h3{font-family:var(--serif);font-weight:600;letter-spacing:-.02em}
+
+/* nav */
+header.nav{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--bg) 85%,transparent);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;gap:18px;height:62px}
+.brand{font-family:var(--serif);font-weight:700;font-size:19px;text-decoration:none;white-space:nowrap}
+.brand span{color:var(--accent)}
+.nav ul{list-style:none;display:flex;gap:2px;margin:0 0 0 auto;padding:0}
+.nav ul a{font-size:14px;color:var(--muted);text-decoration:none;padding:7px 11px;border-radius:8px}
+.nav ul a:hover{color:var(--text);background:var(--panel-2)}
+.icon-btn{border:1px solid var(--line);background:var(--panel);color:var(--text);width:36px;height:36px;border-radius:10px;display:grid;place-items:center;cursor:pointer;flex:none}
+.icon-btn svg{width:17px;height:17px}
+.menu-btn{display:none}
+@media (max-width:880px){
+  .nav ul{display:none;position:absolute;top:62px;left:0;right:0;flex-direction:column;background:var(--bg-2);border-bottom:1px solid var(--line);padding:10px 16px 16px}
+  .nav ul.open{display:flex}
+  .nav ul a{display:block;padding:10px 12px}
+  .menu-btn{display:grid;margin-left:auto}
+}
+
+/* hero */
+.hero{padding:84px 0 56px;position:relative;overflow:hidden}
+.hero::after{content:"";position:absolute;right:-180px;top:-120px;width:560px;height:560px;border-radius:50%;background:radial-gradient(circle,var(--accent-soft),transparent 68%);pointer-events:none}
+.hero .wrap{position:relative;z-index:1}
+.kicker{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:600;margin:0 0 18px}
+h1{font-size:clamp(44px,7.4vw,84px);line-height:1;margin:0 0 22px;font-weight:600}
+.rotator{font-family:var(--serif);font-size:clamp(22px,3.2vw,32px);line-height:1.3;color:var(--muted);margin:0 0 26px;font-weight:400}
+.rotator .word{color:var(--text);font-style:italic;border-bottom:2px solid var(--accent);padding-bottom:1px}
+@media (max-width:600px){.rotator{min-height:2.6em}}
+.rotator .caret{display:inline-block;width:2px;height:.95em;background:var(--accent);vertical-align:-2px;margin-left:2px;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.lede{max-width:640px;font-size:18px;color:var(--muted);margin:0 0 30px}
+.cta{display:flex;flex-wrap:wrap;gap:10px}
+.btn{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:14.5px;text-decoration:none;padding:11px 18px;border-radius:999px;border:1px solid var(--line-2);background:var(--panel);color:var(--text);cursor:pointer;font-family:inherit;transition:.15s}
+.btn:hover{transform:translateY(-1px);border-color:var(--faint)}
+.btn.primary{background:var(--text);color:var(--bg);border-color:var(--text)}
+.btn svg{width:16px;height:16px}
+
+/* pillars */
+.pillars{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:58px}
+@media (max-width:920px){.pillars{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:520px){.pillars{grid-template-columns:1fr}}
+.pillar{display:block;text-decoration:none;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:22px;transition:transform .2s,box-shadow .2s,border-color .2s;position:relative;overflow:hidden}
+.pillar:hover{transform:translateY(-3px);box-shadow:var(--shadow);border-color:var(--line-2)}
+.pillar::before{content:"";position:absolute;left:0;top:0;right:0;height:3px;background:var(--c)}
+.pillar .ic{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;background:var(--cs);color:var(--c);margin-bottom:16px}
+.pillar .ic svg{width:21px;height:21px}
+.pillar h3{margin:0 0 4px;font-size:19px}
+.pillar .yrs{font-size:13px;color:var(--c);font-weight:600;margin-bottom:8px}
+.pillar p{margin:0;font-size:14.5px;color:var(--muted);line-height:1.55}
+
+/* sections */
+section{padding:92px 0}
+section.alt{background:var(--bg-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;color:var(--c,var(--accent));margin:0 0 12px}
+.eyebrow::before{content:"";width:22px;height:2px;background:currentColor;border-radius:2px}
+h2{font-size:clamp(32px,4.6vw,48px);line-height:1.08;margin:0 0 16px}
+.sub{color:var(--muted);max-width:680px;margin:0 0 40px;font-size:17px}
+.two{display:grid;grid-template-columns:1.1fr 1fr;gap:40px;align-items:start}
+@media (max-width:880px){.two{grid-template-columns:1fr;gap:28px}}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:24px}
+.chips{display:flex;flex-wrap:wrap;gap:7px}
+.chip{font-size:13px;padding:5px 12px;border-radius:999px;background:var(--panel-2);border:1px solid var(--line);white-space:nowrap}
+.list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:14px}
+.list li{display:grid;grid-template-columns:20px 1fr;gap:12px;color:var(--muted);font-size:15.5px}
+.list li b{color:var(--text);font-weight:600}
+.list .dot{width:8px;height:8px;border-radius:50%;background:var(--c,var(--accent));margin-top:9px;justify-self:center}
+.role{display:flex;justify-content:space-between;gap:16px;align-items:baseline;padding:16px 0;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.role:last-child{border-bottom:0;padding-bottom:0}
+.role:first-child{padding-top:0}
+.role b{font-weight:600;display:block}
+.role span{color:var(--muted);font-size:14.5px}
+.role time{font-size:13px;color:var(--faint);white-space:nowrap;font-variant-numeric:tabular-nums}
+.quote{font-family:var(--serif);font-size:clamp(22px,2.6vw,28px);line-height:1.4;font-style:italic;margin:0;color:var(--text);position:relative;padding-left:22px;border-left:3px solid var(--c,var(--accent))}
+.quote-by{margin-top:14px;font-size:14px;color:var(--faint);padding-left:25px}
+.linkcard{display:flex;gap:14px;align-items:center;text-decoration:none;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-top:16px;transition:.2s}
+.linkcard:hover{border-color:var(--line-2);box-shadow:var(--shadow)}
+.linkcard .ic{width:40px;height:40px;border-radius:11px;display:grid;place-items:center;flex:none}
+.linkcard .ic svg{width:20px;height:20px}
+.linkcard b{display:block;font-size:15px}
+.linkcard span{font-size:13.5px;color:var(--muted)}
+.linkcard .go{margin-left:auto;color:var(--faint)}
+
+/* books */
+.books{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+@media (max-width:880px){.books{grid-template-columns:1fr}}
+.book{display:grid;grid-template-columns:150px 1fr;gap:24px;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:24px;align-items:start}
+@media (max-width:480px){.book{grid-template-columns:1fr}.book .cover{max-width:170px}}
+.cover{display:block;width:100%;aspect-ratio:2/3;border-radius:4px 8px 8px 4px;overflow:hidden;box-shadow:0 2px 4px rgba(0,0,0,.12),0 14px 28px rgba(0,0,0,.18),inset 4px 0 0 rgba(255,255,255,.06);background:var(--panel-2);transition:transform .3s;transform:perspective(900px) rotateY(-8deg)}
+.book:hover .cover{transform:perspective(900px) rotateY(0)}
+.cover img{width:100%;height:100%;object-fit:cover;display:block}
+.book .genre{font-size:12.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--wri)}
+.book h3{font-size:24px;margin:6px 0 4px;line-height:1.15}
+.book .meta{font-size:13.5px;color:var(--faint);margin-bottom:12px}
+.book p{margin:0 0 12px;color:var(--muted);font-size:15px}
+.book .more{display:none}
+.book.open .more{display:inline}
+.book .toggle{background:none;border:0;padding:0;color:var(--wri);font-weight:600;font-size:14px;cursor:pointer;font-family:inherit}
+.book .btn{margin-top:6px;font-size:14px;padding:9px 15px}
+.wip{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:22px}
+@media (max-width:880px){.wip{grid-template-columns:1fr}}
+.wip .card h4{font-family:var(--serif);font-size:19px;margin:8px 0 6px;font-weight:600}
+.wip .card p{margin:0;color:var(--muted);font-size:14.5px}
+.tag{display:inline-block;font-size:11.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:3px 9px;border-radius:999px;background:var(--wri-soft);color:var(--wri)}
+
+/* timeline */
+.legend{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:30px}
+.lg{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:600;padding:8px 14px;border-radius:999px;border:1px solid var(--line-2);background:var(--panel);color:var(--text);cursor:pointer;font-family:inherit;transition:.15s}
+.lg i{width:10px;height:10px;border-radius:50%;background:var(--c)}
+.lg[aria-pressed="false"]{opacity:.45;background:transparent}
+.lg[aria-pressed="false"] i{background:transparent;box-shadow:inset 0 0 0 2px var(--c)}
+.tl{position:relative;padding-left:34px}
+.tl::before{content:"";position:absolute;left:9px;top:6px;bottom:6px;width:2px;background:var(--line-2);border-radius:2px}
+.ev{position:relative;padding:0 0 26px;transition:opacity .25s}
+.ev.hide{display:none}
+.ev::before{content:"";position:absolute;left:-31px;top:6px;width:14px;height:14px;border-radius:50%;background:var(--bg-2);border:3px solid var(--c)}
+.ev time{font-size:13px;font-weight:600;color:var(--c);font-variant-numeric:tabular-nums}
+.ev h4{margin:2px 0 2px;font-size:17px;font-weight:600}
+.ev p{margin:0;color:var(--muted);font-size:14.5px;max-width:700px}
+
+/* education */
+.edu{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+@media (max-width:880px){.edu{grid-template-columns:1fr}}
+.edu h4{margin:0 0 14px;font-size:12.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);font-weight:600}
+.edu ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px;font-size:15px}
+.edu li b{display:block;font-weight:600}
+.edu li span{color:var(--muted);font-size:14px}
+.lang{display:flex;flex-direction:column;gap:14px}
+.lang div{display:grid;grid-template-columns:78px 1fr;gap:12px;align-items:center;font-size:14.5px}
+.lang .bar{height:6px;background:var(--panel-2);border-radius:99px;overflow:hidden;border:1px solid var(--line)}
+.lang .bar i{display:block;height:100%;background:var(--accent);border-radius:99px}
+.lang small{grid-column:2;color:var(--muted);font-size:13px;margin-top:-8px}
+
+/* contact */
+.contact{text-align:center;padding:40px 24px}
+.contact h2{margin-bottom:12px}
+.contact .sub{margin:0 auto 28px}
+.contact .cta{justify-content:center}
+footer{padding:34px 0 48px;color:var(--faint);font-size:13.5px}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+footer a{color:var(--muted)}
+.toast{position:fixed;bottom:24px;left:50%;transform:translate(-50%,20px);background:var(--text);color:var(--bg);padding:10px 16px;border-radius:10px;font-size:14px;font-weight:600;opacity:0;pointer-events:none;transition:.25s;z-index:100}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+.reveal{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <a href="#top" class="brand">Adem Garic<span>.</span></a>
+    <ul id="menu">
+      <li><a href="#engineering">Engineering</a></li>
+      <li><a href="#scholarship">Scholarship</a></li>
+      <li><a href="#writing">Writing</a></li>
+      <li><a href="#realestate">Real Estate</a></li>
+      <li><a href="#journey">Journey</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button class="icon-btn menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+    <button class="icon-btn" id="themeBtn" aria-label="Toggle color theme">
+      <svg id="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      <svg id="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+    </button>
+  </div>
+</header>
+
+<main id="top">
+<div class="hero">
+  <div class="wrap">
+    <p class="kicker">Multidisciplinary portfolio</p>
+    <h1>Adem Garic</h1>
+    <p class="rotator" aria-live="off"><span class="sr-label">I work as </span><span class="word" id="rotWord">an AI quality engineer</span><span class="caret" aria-hidden="true"></span></p>
+    <p class="lede">Six years in software QA, now focused on AI quality. Ten years as an imam and community educator. A published author and literary translator between Bosnian and English. A licensed real estate agent in Pennsylvania. Different worlds, same instinct: find the detail everyone else missed.</p>
+    <div class="cta">
+      <a class="btn primary" href="#journey">See the full journey
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a class="btn" href="../">QA &amp; SDET portfolio</a>
+      <a class="btn" href="https://www.linkedin.com/in/adem-garic-sdet-qa/" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+
+    <div class="pillars">
+      <a class="pillar reveal" href="#engineering" style="--c:var(--eng);--cs:var(--eng-soft)">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6l-6 6 6 6M16 6l6 6-6 6"/></svg></div>
+        <h3>AI &amp; Software Engineering</h3><div class="yrs">6+ years</div>
+        <p>AI evaluation, QA automation, and agentic test tooling.</p>
+      </a>
+      <a class="pillar reveal" href="#scholarship" style="--c:var(--sch);--cs:var(--sch-soft)">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 5h7a3 3 0 0 1 3 3v12a2 2 0 0 0-2-2H2z"/><path d="M22 5h-7a3 3 0 0 0-3 3v12a2 2 0 0 1 2-2h8z"/></svg></div>
+        <h3>Islamic Scholarship</h3><div class="yrs">10+ years</div>
+        <p>Imam, educator, and community leader. B.A. in Theology.</p>
+      </a>
+      <a class="pillar reveal" href="#writing" style="--c:var(--wri);--cs:var(--wri-soft)">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></div>
+        <h3>Authorship &amp; Translation</h3><div class="yrs">Since 2013</div>
+        <p>Poetry, short fiction, and essays in Bosnian and English.</p>
+      </a>
+      <a class="pillar reveal" href="#realestate" style="--c:var(--est);--cs:var(--est-soft)">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/></svg></div>
+        <h3>Real Estate</h3><div class="yrs">Licensed in PA</div>
+        <p>Residential transactions, with bilingual service in Bosnian and English.</p>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- ENGINEERING -->
+<section id="engineering" class="alt" style="--c:var(--eng)">
+  <div class="wrap">
+    <p class="eyebrow">AI &amp; Software Engineering</p>
+    <h2>Defining “good” where there’s no single right answer.</h2>
+    <p class="sub">I'm a QA Engineer, AI at TrueLearn. I build evaluation systems, LLM-as-a-judge graders, and hallucination and guardrail tests for AI features. Before that, I spent six years building test automation for web, mobile, and APIs.</p>
+    <div class="two">
+      <div class="card reveal">
+        <div class="role"><div><b>QA Engineer, AI</b><span>TrueLearn · Remote</span></div><time>Aug 2026 – Present</time></div>
+        <div class="role"><div><b>QA Reviewer (Contract)</b><span>Mercor · frontier AI lab client</span></div><time>Aug – Sep 2026</time></div>
+        <div class="role"><div><b>Founder · PM, Developer &amp; QA</b><span>Pitchlio · AI job-search automation</span></div><time>2026 – Present</time></div>
+        <div class="role"><div><b>Software Development Engineer in Test</b><span>Ontraport</span></div><time>Oct 2022 – Apr 2026</time></div>
+        <div class="role"><div><b>QA Analyst &amp; Automation Engineer</b><span>Mersys LLC</span></div><time>Aug 2019 – Sep 2022</time></div>
+      </div>
+      <div class="reveal">
+        <ul class="list">
+          <li><span class="dot"></span><span>Build <b>AI evaluation systems</b>: LLM-as-a-judge graders, eval harnesses, rubrics, test sets, and quality dashboards.</span></li>
+          <li><span class="dot"></span><span>Test AI output for <b>hallucination, factual accuracy, retrieval regressions, and guardrail breaks</b>.</span></li>
+          <li><span class="dot"></span><span>Built an <b>AI-powered QA agent</b> on the Claude Agent SDK and wrote an MCP server test plan covering 39 tools.</span></li>
+          <li><span class="dot"></span><span>Built an <b>Appium 2 mobile framework</b> from scratch for iOS and Android, with 50+ tests in CI.</span></li>
+          <li><span class="dot"></span><span>Shipped <b>Pitchlio</b> solo: a desktop and Android product with Claude, GPT, and Gemini support.</span></li>
+        </ul>
+        <div class="chips" style="margin-top:22px">
+          <span class="chip">Python</span><span class="chip">Java</span><span class="chip">TypeScript</span><span class="chip">Appium</span><span class="chip">Playwright</span><span class="chip">Selenium</span><span class="chip">MCP</span><span class="chip">Claude · GPT · Gemini</span>
+        </div>
+        <a class="linkcard" href="../" style="--c:var(--eng)">
+          <span class="ic" style="background:var(--eng-soft);color:var(--eng)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>
+          <span><b>Full QA &amp; SDET portfolio</b><span>Projects, an interactive eval lab, sample QA artifacts, and recommendations</span></span>
+          <span class="go">→</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SCHOLARSHIP -->
+<section id="scholarship" style="--c:var(--sch)">
+  <div class="wrap">
+    <p class="eyebrow">Islamic Scholarship &amp; Community Leadership</p>
+    <h2>Ten years serving a community.</h2>
+    <p class="sub">I serve as imam, religious educator, and community leader for the Bosnian Muslim community in Erie, Pennsylvania. The work ranges from Friday sermons and pastoral counseling to teaching children and leading community-wide events.</p>
+    <div class="two">
+      <div class="reveal">
+        <ul class="list">
+          <li><span class="dot"></span><span><b>Compose and deliver khutbas and lectures</b> in both Bosnian and English.</span></li>
+          <li><span class="dot"></span><span><b>Design Islamic curriculum for children ages 9–11</b>, covering theology, prayer, fasting, Hajj, and ethics.</span></li>
+          <li><span class="dot"></span><span>Lead <b>life-cycle ceremonies and pastoral counseling</b> across the community.</span></li>
+          <li><span class="dot"></span><span>Organize community-wide religious and cultural events as <b>program lead and MC</b>.</span></li>
+          <li><span class="dot"></span><span>Write <b>ilahija (nasheed) lyrics</b> performed at community gatherings.</span></li>
+        </ul>
+        <div class="chips" style="margin-top:22px">
+          <span class="chip">Qur'anic studies</span><span class="chip">Hadith</span><span class="chip">Fiqh</span><span class="chip">Aqidah</span><span class="chip">Islamic ethics</span><span class="chip">Curriculum design</span>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="card">
+          <p class="eyebrow" style="margin-bottom:8px">Formal training</p>
+          <h3 style="margin:0 0 6px;font-size:22px">B.A. in Theology</h3>
+          <p style="margin:0;color:var(--muted)">University of Sarajevo, 2006–2011. Formal training in Qur'anic studies, hadith, fiqh, and Islamic ethics.</p>
+        </div>
+        <a class="linkcard" href="https://ademdeniz.github.io/islamic-games-en/" target="_blank" rel="noopener">
+          <span class="ic" style="background:var(--sch-soft);color:var(--sch)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="4"/><path d="M7 10v4M5 12h4M15 11h.01M18 13h.01"/></svg></span>
+          <span><b>Islamic learning games for kids</b><span>Qur'an, salah, iman, and ilmihal games in English for our maktab students</span></span>
+          <span class="go">↗</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WRITING -->
+<section id="writing" class="alt" style="--c:var(--wri)">
+  <div class="wrap">
+    <p class="eyebrow">Authorship &amp; Literary Translation</p>
+    <h2>Writing from the in-between.</h2>
+    <p class="sub">I've written books in Bosnian and English since 2013, published under the name <b>Adem Deniz Garic</b>. My work moves between Bosnia and America: memory, faith, migration, and the search for home.</p>
+
+    <div class="two" style="margin-bottom:40px">
+      <div class="reveal">
+        <blockquote class="quote">I don’t write to impress. I write to stay honest, to heal, and to remember who I am.</blockquote>
+        <p class="quote-by">From my author page on Amazon</p>
+      </div>
+      <div class="card reveal">
+        <p class="eyebrow" style="margin-bottom:8px">Translation practice</p>
+        <p style="margin:0;color:var(--muted)">I specialize in <b style="color:var(--text)">Bosnian-to-English literary translation</b>. I preserve voice, cultural texture, Turkish dialectal forms, and Sarajevan expressions rather than aiming for literal accuracy. I also edit poetry, short fiction, and long-form essays.</p>
+      </div>
+    </div>
+
+    <div class="books">
+      <article class="book reveal">
+        <a class="cover" href="https://www.amazon.com/dp/B0GWWJZVX2" target="_blank" rel="noopener" aria-label="America Is Hollywood on Amazon">
+          <img src="https://m.media-amazon.com/images/I/71m99glGRhL._SY522_.jpg" alt="Cover of America Is Hollywood" loading="lazy"></a>
+        <div>
+          <span class="genre">Poetry</span>
+          <h3>America Is Hollywood</h3>
+          <div class="meta">70+ poems · 116 pages · translated from Bosnian by Mario Frömml</div>
+          <p>A lyrical exploration of identity, migration, and the quiet search for belonging. The poems move from the streets of Sarajevo to Erie, Pennsylvania<span class="more">, tracing a life shaped by memory, faith, war, fatherhood, and the weight of everyday moments</span>.</p>
+          <button class="toggle" type="button" aria-expanded="false">Read more</button><br>
+          <a class="btn" href="https://www.amazon.com/dp/B0GWWJZVX2" target="_blank" rel="noopener">View on Amazon ↗</a>
+        </div>
+      </article>
+      <article class="book reveal">
+        <a class="cover" href="https://www.amazon.com/dp/B0GWTX76H9" target="_blank" rel="noopener" aria-label="If There's No Belt, There's Rope on Amazon">
+          <img src="https://m.media-amazon.com/images/I/51hKxQg+Q2L._SY522_.jpg" alt="Cover of If There's No Belt, There's Rope" loading="lazy"></a>
+        <div>
+          <span class="genre">Short stories</span>
+          <h3>If There’s No Belt, There’s Rope</h3>
+          <div class="meta">Stories · 140 pages</div>
+          <p>Stories that move between the green hills of Bosnia and the wide streets of America<span class="more">: village mischief near Tešanj, the quiet routines of Erie, and the slow work of building a life in a new country. They're written with warmth, humor, and honesty about carrying two worlds inside you</span>.</p>
+          <button class="toggle" type="button" aria-expanded="false">Read more</button><br>
+          <a class="btn" href="https://www.amazon.com/dp/B0GWTX76H9" target="_blank" rel="noopener">View on Amazon ↗</a>
+        </div>
+      </article>
+    </div>
+
+    <div class="wip">
+      <div class="card reveal"><span class="tag">In progress</span><h4>Halka</h4><p>A Bosnian-language literary novel set between Istanbul and Sarajevo. It explores abuse of authority within a Sufi tekija through alternating male and female narrators.</p></div>
+      <div class="card reveal"><span class="tag">Substack</span><h4>The Imam in the Crime Blotter</h4><p>My literary publication for short fiction, essays, and reflections.</p></div>
+      <div class="card reveal"><span class="tag">Lyrics</span><h4>Ilahije (nasheeds)</h4><p>Devotional song lyrics written for and performed at community religious gatherings.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- REAL ESTATE -->
+<section id="realestate" style="--c:var(--est)">
+  <div class="wrap">
+    <p class="eyebrow">Real Estate</p>
+    <h2>Licensed agent in Pennsylvania.</h2>
+    <p class="sub">I'm a licensed real estate salesperson with Agresti Real Estate. I help buyers and sellers in the Erie region, and I offer bilingual service for Bosnian-speaking families.</p>
+    <div class="two">
+      <div class="reveal">
+        <ul class="list">
+          <li><span class="dot"></span><span><b>Residential transactions</b>, agency relationships, and contracts.</span></li>
+          <li><span class="dot"></span><span><b>Fair housing</b> and PA consumer-protection rules, including Consumer Notice requirements and the PA Recovery Fund.</span></li>
+          <li><span class="dot"></span><span>Working knowledge of <b>broker supervision</b> requirements and PA-specific regulations.</span></li>
+          <li><span class="dot"></span><span><b>Bilingual service</b> in Bosnian and English.</span></li>
+        </ul>
+      </div>
+      <div class="card reveal">
+        <p class="eyebrow" style="margin-bottom:8px">Credentials</p>
+        <div class="role"><div><b>PA Real Estate Salesperson License</b><span>Commonwealth of Pennsylvania</span></div><time>2026</time></div>
+        <div class="role"><div><b>PA Pre-Licensing Education</b><span>Completed</span></div><time></time></div>
+        <div class="role"><div><b>Brokerage</b><span>Agresti Real Estate</span></div><time>Current</time></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- JOURNEY -->
+<section id="journey" class="alt">
+  <div class="wrap">
+    <p class="eyebrow">The journey</p>
+    <h2>One life, many threads.</h2>
+    <p class="sub">Tap a thread to show or hide it.</p>
+    <div class="legend" id="legend"></div>
+    <div class="tl" id="timeline"></div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="wrap">
+    <p class="eyebrow">Education &amp; credentials</p>
+    <h2>Always learning.</h2>
+    <div class="edu" style="margin-top:34px">
+      <div class="card reveal">
+        <h4>Education</h4>
+        <ul>
+          <li><b>M.S., Information Technology</b><span>University of the People · 2025 – present</span></li>
+          <li><b>B.A., Theology &amp; Theological Studies</b><span>University of Sarajevo · 2006 – 2011</span></li>
+          <li><b>PA Real Estate Pre-Licensing</b><span>Completed</span></li>
+        </ul>
+      </div>
+      <div class="card reveal">
+        <h4>Certifications</h4>
+        <ul>
+          <li><b>Pennsylvania Real Estate Salesperson License</b><span>2026</span></li>
+          <li><b>Prompt Engineering Specialization</b><span>Vanderbilt University · 2024</span></li>
+          <li><b>ChatGPT Advanced Data Analysis</b><span>Vanderbilt University · 2024</span></li>
+          <li><b>AI-Powered Testing</b><span>Tecno Study · 2023</span></li>
+          <li><b>LambdaTest Software Testing Professional</b><span>LinkedIn · 2024</span></li>
+          <li><b>BDD with Cucumber &amp; Serenity</b><span>Serenity Dojo · 2023</span></li>
+          <li><b>CompTIA CySA+</b><span>LinkedIn Learning · 2023</span></li>
+        </ul>
+      </div>
+      <div class="card reveal">
+        <h4>Languages</h4>
+        <div class="lang">
+          <div><span>Bosnian</span><span class="bar"><i style="width:100%"></i></span><small>Native, with professional literary fluency</small></div>
+          <div><span>English</span><span class="bar"><i style="width:92%"></i></span><small>Fluent, professional</small></div>
+          <div><span>Arabic</span><span class="bar"><i style="width:35%"></i></span><small>Elementary, classical Qur'anic</small></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="alt">
+  <div class="wrap">
+    <div class="card contact reveal">
+      <p class="eyebrow">Get in touch</p>
+      <h2>Let's talk.</h2>
+      <p class="sub">Whether it's AI quality work, a translation project, a speaking or teaching invitation, or a home in the Erie region, I'd be glad to hear from you.</p>
+      <div class="cta">
+        <a class="btn primary" href="mailto:ademdenizgaric@gmail.com">Email me</a>
+        <button class="btn" id="copyEmail" type="button">Copy address</button>
+        <a class="btn" href="https://www.linkedin.com/in/adem-garic-sdet-qa/" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn" href="https://github.com/ademdeniz" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© <span id="yr">2026</span> Adem Garic</span>
+    <span><a href="../">QA &amp; SDET portfolio</a></span>
+  </div>
+</footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(function(){
+  "use strict";
+  var $=function(s,r){return (r||document).querySelector(s)};
+  var $$=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))};
+  var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* theme (shared key with the QA portfolio) */
+  var root=document.documentElement;
+  function store(k,v){try{if(v===undefined)return localStorage.getItem(k);localStorage.setItem(k,v)}catch(e){return null}}
+  var saved=store('theme'); if(saved==='light'||saved==='dark') root.setAttribute('data-theme',saved);
+  function isDark(){var t=root.getAttribute('data-theme');if(t)return t==='dark';return matchMedia('(prefers-color-scheme: dark)').matches}
+  function syncIcon(){$('#sun').style.display=isDark()?'block':'none';$('#moon').style.display=isDark()?'none':'block'}
+  syncIcon();
+  $('#themeBtn').addEventListener('click',function(){var n=isDark()?'light':'dark';root.setAttribute('data-theme',n);store('theme',n);syncIcon()});
+
+  /* menu */
+  var menu=$('#menu'),mb=$('#menuBtn');
+  mb.addEventListener('click',function(){var o=menu.classList.toggle('open');mb.setAttribute('aria-expanded',o)});
+  $$('#menu a').forEach(function(a){a.addEventListener('click',function(){menu.classList.remove('open');mb.setAttribute('aria-expanded',false)})});
+
+  /* rotating role */
+  var words=['an AI quality engineer','an SDET','an imam and educator','a published author','a literary translator','a licensed real estate agent'];
+  var el=$('#rotWord');
+  if(!reduce){
+    var wi=0,ci=words[0].length,del=true;
+    setTimeout(function tick(){
+      var w=words[wi];
+      if(del){ci--;el.textContent=w.slice(0,ci);if(ci<=0){del=false;wi=(wi+1)%words.length}setTimeout(tick,32)}
+      else{var nw=words[wi];ci++;el.textContent=nw.slice(0,ci);if(ci>=nw.length){del=true;setTimeout(tick,2000)}else setTimeout(tick,58)}
+    },2200);
+  }
+
+  /* book read-more */
+  $$('.book .toggle').forEach(function(b){
+    b.addEventListener('click',function(){var o=b.closest('.book').classList.toggle('open');b.textContent=o?'Show less':'Read more';b.setAttribute('aria-expanded',o)});
+  });
+
+  /* journey timeline */
+  var TH={eng:['Engineering','var(--eng)'],sch:['Scholarship','var(--sch)'],wri:['Writing','var(--wri)'],est:['Real estate','var(--est)'],edu:['Education','var(--accent)']};
+  var EV=[
+    ['eng','Aug 2026 – Present','QA Engineer, AI · TrueLearn','Building evaluation systems and LLM-as-a-judge grading for AI features.'],
+    ['eng','Aug – Sep 2026','QA Reviewer · Mercor','Reviewed AI training data and model outputs for a frontier AI lab client.'],
+    ['est','2026','Licensed PA real estate agent','Joined Agresti Real Estate, offering bilingual service in the Erie region.'],
+    ['eng','2026 – Present','Founded Pitchlio','Shipped an AI job-search product solo, as product manager, developer, and QA engineer.'],
+    ['edu','2025 – Present','M.S., Information Technology','University of the People.'],
+    ['eng','Oct 2022 – Apr 2026','SDET · Ontraport','Built an Appium 2 framework from scratch and an AI-powered QA agent on the Claude Agent SDK.'],
+    ['eng','Aug 2019 – Sep 2022','QA Analyst & Automation Engineer · Mersys','Started in QA: manual testing, then automation with Java, Selenium, and Cucumber.'],
+    ['sch','10+ years · ongoing','Imam, educator & community leader','Serving the Bosnian Muslim community in Erie, PA through khutbas, teaching, counseling, and events.'],
+    ['wri','2013 – Present','Author & literary translator','First book published. Since then: poetry, short stories, a Substack publication, and a novel in progress.'],
+    ['edu','2006 – 2011','B.A., Theology','University of Sarajevo, with formal training in Qur\'anic studies, hadith, fiqh, and Islamic ethics.']
+  ];
+  var on={eng:1,sch:1,wri:1,est:1,edu:1};
+  $('#legend').innerHTML=Object.keys(TH).map(function(k){
+    return '<button class="lg" type="button" aria-pressed="true" data-k="'+k+'" style="--c:'+TH[k][1]+'"><i></i>'+TH[k][0]+'</button>';
+  }).join('');
+  $('#timeline').innerHTML=EV.map(function(e){
+    return '<div class="ev" data-k="'+e[0]+'" style="--c:'+TH[e[0]][1]+'"><time>'+e[1]+'</time><h4>'+e[2]+'</h4><p>'+e[3]+'</p></div>';
+  }).join('');
+  $$('.lg').forEach(function(b){
+    b.addEventListener('click',function(){
+      var k=b.getAttribute('data-k');
+      var active=Object.keys(on).filter(function(x){return on[x]});
+      if(on[k]&&active.length===1)return; // keep at least one thread visible
+      on[k]=on[k]?0:1; b.setAttribute('aria-pressed',!!on[k]);
+      $$('.ev').forEach(function(ev){ev.classList.toggle('hide',!on[ev.getAttribute('data-k')])});
+    });
+  });
+
+  /* copy email */
+  var toast=$('#toast');
+  function showToast(m){toast.textContent=m;toast.classList.add('show');setTimeout(function(){toast.classList.remove('show')},1800)}
+  $('#copyEmail').addEventListener('click',function(){
+    var e='ademdenizgaric@gmail.com';
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(e).then(function(){showToast('Email copied ✓')},function(){showToast(e)})}
+    else showToast(e);
+  });
+
+  /* reveal */
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
+    $$('.reveal').forEach(function(el){io.observe(el)});
+  } else $$('.reveal').forEach(function(el){el.classList.add('in')});
+  $('#yr').textContent=new Date().getFullYear();
+})();
+</script>
+</body>
+</html>
