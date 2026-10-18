@@ -158,41 +158,74 @@ h2{font-size:clamp(28px,4vw,40px);letter-spacing:-.03em;line-height:1.1;margin:0
 .lens-meta{margin-top:18px;padding-top:16px;border-top:1px dashed var(--line-2);font-size:13px;color:var(--faint);font-family:var(--mono)}
 
 /* eval lab */
-.lab{display:grid;grid-template-columns:1fr 1.35fr;gap:22px;align-items:start}
+.ev-part{margin-top:52px}
+.ev-part:first-of-type{margin-top:0}
+.ev-h3{font-size:21px;letter-spacing:-.02em;margin:0 0 6px;font-weight:700}
+.ev-h3 .n{font-family:var(--mono);font-size:13px;color:var(--accent);background:var(--accent-soft);padding:3px 8px;border-radius:6px;margin-right:10px;vertical-align:2px}
+.ev-lead{color:var(--muted);margin:0 0 22px;max-width:720px;font-size:15.5px}
+.lab{display:grid;grid-template-columns:1fr 1.4fr;gap:22px;align-items:start}
 @media (max-width:960px){.lab{grid-template-columns:1fr}}
-.src{font-size:14.5px;color:var(--muted)}
-.src h4,.lab h4{margin:0 0 10px;font-size:12.5px;font-family:var(--mono);text-transform:uppercase;letter-spacing:.05em;color:var(--faint);font-weight:500}
-.src blockquote{margin:0 0 18px;padding:14px 16px;border-left:3px solid var(--accent);background:var(--panel-2);border-radius:0 10px 10px 0;color:var(--text);font-size:14.5px}
-.src blockquote span{display:block;margin-bottom:6px}
-.src blockquote span:last-child{margin:0}
-.q{font-weight:600;color:var(--text);margin:0}
-.answers{display:flex;flex-direction:column;gap:14px}
-.ans{border:1px solid var(--line);border-radius:12px;background:var(--panel);overflow:hidden;transition:border-color .2s}
-.ans-top{padding:14px 16px;display:grid;grid-template-columns:auto 1fr;gap:12px}
-.ans-id{font-family:var(--mono);font-size:12px;font-weight:700;background:var(--panel-2);border:1px solid var(--line);border-radius:7px;width:28px;height:28px;display:grid;place-items:center}
-.ans-text{font-size:14.5px}
-.ans-text .claim{border-radius:4px;padding:1px 2px;transition:background .3s,box-shadow .3s}
-.lab.judged .claim.s{background:var(--pass-soft);box-shadow:inset 0 -2px 0 var(--pass)}
-.lab.judged .claim.u{background:var(--fail-soft);box-shadow:inset 0 -2px 0 var(--fail)}
-.ans-actions{display:flex;align-items:center;gap:8px;padding:10px 16px;border-top:1px solid var(--line);background:var(--panel-2);flex-wrap:wrap}
-.ans-actions .lbl{font-size:12.5px;color:var(--faint);margin-right:auto;font-family:var(--mono)}
-.vote{font-family:var(--mono);font-size:12px;font-weight:700;padding:5px 12px;border-radius:7px;border:1px solid var(--line-2);background:var(--panel);color:var(--muted);cursor:pointer}
-.vote.pass[aria-pressed="true"]{background:var(--pass);border-color:var(--pass);color:#fff}
-.vote.fail[aria-pressed="true"]{background:var(--fail);border-color:var(--fail);color:#fff}
-.verdict{display:none;padding:12px 16px;border-top:1px solid var(--line);font-size:13.5px}
-.lab.judged .verdict{display:block}
-.verdict .row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:6px}
+.lab h4{margin:0 0 10px;font-size:12.5px;font-family:var(--mono);text-transform:uppercase;letter-spacing:.05em;color:var(--faint);font-weight:500}
+.src-res{margin:0 0 20px;padding:14px 16px;border-left:3px solid var(--accent);background:var(--panel-2);border-radius:0 10px 10px 0;font-size:14.5px}
+.src-res b{display:block;margin-bottom:6px}
+.src-res ul{margin:0;padding-left:18px;color:var(--text)}
+.src-res li{margin-bottom:4px}
+.policy{width:100%;border-collapse:collapse;font-size:13.5px}
+.policy td{padding:7px 0;border-bottom:1px solid var(--line);vertical-align:top}
+.policy tr:last-child td{border-bottom:0}
+.policy td:first-child{font-family:var(--mono);font-size:12.5px;white-space:nowrap;padding-right:12px;color:var(--text)}
+.policy td:nth-child(2){color:var(--muted);padding-right:10px}
+.policy td:last-child{text-align:right}
+.claims{display:flex;flex-direction:column;gap:12px}
+.claim{border:1px solid var(--line);border-radius:12px;background:var(--panel);overflow:hidden;transition:border-color .2s}
+.claim-top{padding:14px 16px;display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:start}
+.claim-id{font-family:var(--mono);font-size:12px;font-weight:700;background:var(--panel-2);border:1px solid var(--line);border-radius:7px;width:28px;height:28px;display:grid;place-items:center}
+.claim-text{font-size:15px;padding-top:3px}
+.lbls{display:flex;flex-wrap:wrap;gap:6px;padding:10px 16px;border-top:1px solid var(--line);background:var(--panel-2)}
+.lbl-btn{font-family:var(--mono);font-size:11.5px;font-weight:600;padding:5px 10px;border-radius:7px;border:1px solid var(--line-2);background:var(--panel);color:var(--muted);cursor:pointer}
+.lbl-btn:hover{color:var(--text)}
+.lbl-btn[aria-pressed="true"]{background:var(--text);border-color:var(--text);color:var(--bg)}
+.claim-verdict{display:none;padding:11px 16px;border-top:1px solid var(--line);font-size:13.5px;color:var(--muted)}
+.lab.judged .claim-verdict{display:block}
+.claim-verdict .row{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:5px}
 .pill{font-family:var(--mono);font-size:11.5px;font-weight:700;padding:3px 9px;border-radius:999px}
 .pill.pass{background:var(--pass-soft);color:var(--pass)}.pill.fail{background:var(--fail-soft);color:var(--fail)}.pill.warn{background:var(--warn-soft);color:var(--warn)}
-.bar{flex:1;min-width:120px;height:6px;background:var(--panel-2);border-radius:99px;overflow:hidden}
-.bar i{display:block;height:100%;width:0;border-radius:99px;transition:width .8s cubic-bezier(.2,.8,.2,1)}
-.verdict p{margin:4px 0 0;color:var(--muted)}
 .lab-foot{display:flex;gap:12px;align-items:center;margin-top:16px;flex-wrap:wrap}
 .lab-score{font-size:14px;color:var(--muted)}
 .lab-score b{color:var(--text)}
-.lab-notes{margin-top:22px;display:grid;gap:10px}
-.lab-notes div{font-size:14px;color:var(--muted);padding-left:14px;border-left:2px solid var(--line-2)}
-.lab-notes b{color:var(--text)}
+.ev-panel{display:none;margin-top:22px;animation:fade .35s ease}
+.ev-panel.on{display:block}
+.ev-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media (max-width:760px){.ev-stats{grid-template-columns:1fr}}
+.ev-stat{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:20px 22px}
+.ev-stat .k{font-size:13.5px;color:var(--muted)}
+.ev-stat b{display:block;font-size:40px;letter-spacing:-.03em;font-weight:800;line-height:1.15;margin:4px 0 6px}
+.ev-stat p{margin:0;font-size:14px;color:var(--muted)}
+.ev-note{margin:16px 0 0;color:var(--muted);font-size:15px;max-width:820px}
+.ev-flow{display:grid;grid-template-columns:1fr auto 1fr;gap:14px;align-items:center}
+@media (max-width:760px){.ev-flow{grid-template-columns:1fr}.ev-flow .arr{transform:rotate(90deg);justify-self:center}}
+.ev-flow .card h5{margin:6px 0 6px;font-size:18px;letter-spacing:-.01em}
+.ev-flow .card p{margin:0;color:var(--muted);font-size:14.5px}
+.ev-flow .arr{color:var(--faint);font-size:22px}
+.ev-tag{font-family:var(--mono);font-size:12px;color:var(--accent-2)}
+.ev-list{margin:0;padding-left:20px;color:var(--muted);font-size:15px}
+.ev-list li{margin-bottom:7px}
+.ev-list b{color:var(--text);font-weight:600}
+.ev-two{display:grid;grid-template-columns:1.1fr 1fr;gap:22px;align-items:center}
+@media (max-width:860px){.ev-two{grid-template-columns:1fr}}
+.ev-ba{display:flex;align-items:center;gap:22px;flex-wrap:wrap}
+.ev-ba b{font-size:54px;letter-spacing:-.03em;font-weight:800;display:block;line-height:1}
+.ev-ba span{font-size:13.5px;color:var(--muted)}
+.ev-shot{margin:22px 0 0}
+.ev-shot img{width:100%;height:auto;display:block;border-radius:12px;border:1px solid var(--line)}
+.ev-shot figcaption{font-size:13px;color:var(--faint);margin-top:8px}
+.lessons{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media (max-width:860px){.lessons{grid-template-columns:1fr}}
+.lessons .card{padding:18px 20px}
+.lessons h5{margin:0 0 4px;font-size:15.5px}
+.lessons p{margin:0;color:var(--muted);font-size:14px}
+.ev-foot{margin-top:22px;font-size:13.5px;color:var(--faint)}
+.ev-foot a{color:var(--muted)}
 
 /* artifacts (manual QA) */
 .art-wrap{margin-top:26px}
@@ -407,36 +440,139 @@ footer a{color:var(--muted)}
 <!-- EVAL LAB -->
 <section id="lab" class="alt">
   <div class="wrap">
-    <p class="eyebrow">// interactive · ai quality</p>
-    <h2>Eval Lab: be the LLM judge.</h2>
-    <p class="sub">This is a small version of my day-to-day AI QA work. Three model answers were generated from one source. Mark each one <b>PASS</b> or <b>FAIL</b> for <i>faithfulness</i>, meaning every claim traces back to the source. Then run the judge and compare.</p>
+    <p class="eyebrow">// interactive · ai quality · case study</p>
+    <h2>Eval Lab: can an AI résumé writer be trusted?</h2>
+    <p class="sub">My product Pitchlio tailors résumés with Claude. A tailored résumé can be persuasive, well written, and false: “mentored” becomes “led”, a tool from the job posting slips into a real bullet, a number grows. These are the evals I built to catch that. Start by doing the judge's job yourself.</p>
 
-    <div class="lab" id="labRoot">
-      <div class="card src">
-        <h4>Source context (retrieved)</h4>
-        <blockquote>
-          <span>Metformin is a first-line medication for type 2 diabetes.</span>
-          <span>It lowers blood glucose mainly by reducing hepatic glucose production.</span>
-          <span>The most common side effects are gastrointestinal, such as nausea and diarrhea.</span>
-          <span>It should be avoided in patients with severe renal impairment.</span>
-        </blockquote>
-        <h4>User question</h4>
-        <p class="q">“How does metformin work, and what side effects should I watch for?”</p>
-        <div class="lab-notes">
-          <div><b>Faithful ≠ true.</b> An answer can be medically correct and still fail if it adds a fact the source never stated.</div>
-          <div><b>Decompose, then score.</b> Split the answer into atomic claims and check each one against the source. Fix the flagged claim; the overall score alone won't tell you what to change.</div>
+    <div class="ev-part">
+      <h3 class="ev-h3"><span class="n">01</span>Try it: label each claim</h3>
+      <p class="ev-lead">Here's a short source résumé for a made-up SDET and five claims from a résumé tailored to a job posting. Give each claim one of the five labels, then run the judge.</p>
+      <div class="lab" id="labRoot">
+        <div class="card">
+          <h4>Source résumé (made-up person)</h4>
+          <div class="src-res">
+            <b>QA Engineer, Acme Corp · 2021–2024</b>
+            <ul>
+              <li>Mentored two junior QA engineers on Selenium best practices.</li>
+              <li>Built a Jenkins pipeline that runs 300 regression tests nightly.</li>
+              <li>Reduced flaky test failures by 30% by fixing waits and locators.</li>
+              <li>Wrote API tests with RestAssured for the payments service.</li>
+            </ul>
+          </div>
+          <h4>The policy</h4>
+          <table class="policy">
+            <tr><td>supported</td><td>Stated in the source résumé</td><td><span class="pill pass">OK</span></td></tr>
+            <tr><td>reworded</td><td>Same fact in the posting's words</td><td><span class="pill pass">OK</span></td></tr>
+            <tr><td>overstated</td><td>Real but inflated</td><td><span class="pill fail">Fail</span></td></tr>
+            <tr><td>unsupported</td><td>No basis in the source</td><td><span class="pill fail">Fail</span></td></tr>
+            <tr><td>contradicted</td><td>Conflicts with the source</td><td><span class="pill fail">Fail</span></td></tr>
+          </table>
+        </div>
+        <div>
+          <div class="claims" id="claims"></div>
+          <div class="lab-foot">
+            <button class="btn primary" id="runJudge" type="button">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4v16l13-8z"/></svg>Run judge</button>
+            <button class="btn" id="resetLab" type="button">Reset</button>
+            <span class="lab-score" id="labScore">Label all five claims, then run the judge.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ev-part">
+      <h3 class="ev-h3"><span class="n">02</span>The real thing: Pitchlio's eval suite</h3>
+      <p class="ev-lead">The same idea at scale: test the judge first, then use it to test the generator.</p>
+      <div class="tabs" role="tablist" aria-label="Pitchlio evals case study">
+        <button class="tab" role="tab" type="button" aria-selected="true" data-ev="approach">Approach</button>
+        <button class="tab" role="tab" type="button" aria-selected="false" data-ev="judge">Test the judge</button>
+        <button class="tab" role="tab" type="button" aria-selected="false" data-ev="results">Results</button>
+        <button class="tab" role="tab" type="button" aria-selected="false" data-ev="product">In the product</button>
+        <button class="tab" role="tab" type="button" aria-selected="false" data-ev="cost">Cost &amp; speed</button>
+      </div>
+
+      <div class="ev-panel on" data-ev="approach">
+        <div class="ev-flow">
+          <div class="card"><span class="ev-tag">Layer 1 · free</span><h5>Deterministic checks</h5><p>Flags numbers, dates, titles, employers, and skills that aren't in the source résumé, plus format rules. No AI, runs in CI.</p></div>
+          <span class="arr" aria-hidden="true">→</span>
+          <div class="card"><span class="ev-tag">Layer 2 · ~$0.04 per document</span><h5>AI judge (Claude Opus)</h5><p>Splits each document into single claims and labels each one against the source. Catches what text matching can't.</p></div>
+        </div>
+        <p class="ev-note">The judge is a different model from the generator (Sonnet), so nothing grades its own writing. Where the line sits (reworded is fine, overstated fails) is a written product decision, not left to the model. And an error is not a fail: refusals and API failures are counted separately.</p>
+      </div>
+
+      <div class="ev-panel" data-ev="judge">
+        <div class="ev-stats">
+          <div class="ev-stat"><span class="k">Free checks alone</span><b style="color:var(--warn)">11 of 18</b><p>lies caught, 0 false alarms. Missed every seniority, responsibility, and keyword-stuffing lie.</p></div>
+          <div class="ev-stat"><span class="k">AI judge</span><b style="color:var(--pass)">18 of 18</b><p>lies caught, and 0 of 6 honest résumés wrongly flagged.</p></div>
+          <div class="ev-stat"><span class="k">Stability, run twice</span><b style="color:var(--pass)">100%</b><p>of verdicts identical across both runs.</p></div>
+        </div>
+        <p class="ev-note">Testing the test: 24 hand-labelled résumés for two made-up people, 6 honest and 18 with exactly one planted lie from 13 kinds. Each case records which layer should catch it. Only after this did I trust the judge on real output.</p>
+      </div>
+
+      <div class="ev-panel" data-ev="results">
+        <div class="ev-stats">
+          <div class="ev-stat"><span class="k">Ready to send as-is</span><b style="color:var(--fail)">0%</b><p>in every tailor run so far, made-up people and my real résumé alike.</p></div>
+          <div class="ev-stat"><span class="k">Résumé claims backed</span><b style="color:var(--warn)">85–97%</b><p>across 10 tailor runs, never 100%.</p></div>
+          <div class="ev-stat"><span class="k">Fixes per tailoring</span><b style="color:var(--warn)">6–9</b><p>must-fix and should-fix items, résumé and cover letter together.</p></div>
+        </div>
+        <p class="ev-note" style="margin-bottom:8px"><b style="color:var(--text)">The generator was the weak spot, not the judge.</b> The first baseline exposed root causes in my own prompt design:</p>
+        <ul class="ev-list">
+          <li>Anecdotes from the writing sample, meant only to match voice, <b>leaked into cover letters as facts</b>.</li>
+          <li>The “Problem, Action, Result” structure <b>pushed the model to invent backstory</b>.</li>
+          <li>Most common today: <b>cover-letter claims that aren't in the résumé</b> (9 of 9 tailorings).</li>
+        </ul>
+        <figure class="ev-shot">
+          <img src="assets/pitchlio-evals.png" alt="Pitchlio Evals page: a judge trust table showing the AI judge caught 22 of 22 fabrications with 0 of 8 honest résumés flagged, and tailoring results showing 0% ready to send, 89% of claims backed, and 9.3 fixes per tailoring" loading="lazy" width="1600" height="1161">
+          <figcaption>The Evals page in Pitchlio, in plain words: “fabrications caught”, not fabrication_recall. This run used an expanded set of 30 test résumés.</figcaption>
+        </figure>
+      </div>
+
+      <div class="ev-panel" data-ev="product">
+        <div class="ev-two">
+          <ul class="ev-list">
+            <li>A <b>Fact check</b> button on every tailored job.</li>
+            <li>A review page where you <b>chat with a reviser</b> to fix flagged claims.</li>
+            <li>Every revision is <b>a saved version</b> with free checks and a diff.</li>
+            <li>“I did use Docker there” is saved as a confirmed fact. <b>Unbacked requests get pushback.</b></li>
+          </ul>
+          <div class="card">
+            <span style="font-size:13.5px;color:var(--muted)">Average fixes on revised applications</span>
+            <div class="ev-ba" style="margin:12px 0 10px">
+              <div><b style="color:var(--warn)">10.3</b><span>before revising</span></div>
+              <span style="font-size:28px;color:var(--faint)" aria-hidden="true">→</span>
+              <div><b style="color:var(--pass)">4.3</b><span>after</span></div>
+            </div>
+            <p style="margin:0;font-size:13.5px;color:var(--muted)">3 revised applications, latest re-check. Small sample, stated as such.</p>
+          </div>
         </div>
       </div>
 
-      <div>
-        <div class="answers" id="answers"></div>
-        <div class="lab-foot">
-          <button class="btn primary" id="runJudge" type="button">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4v16l13-8z"/></svg>Run judge</button>
-          <button class="btn" id="resetLab" type="button">Reset</button>
-          <span class="lab-score" id="labScore">Mark all three answers, then run the judge.</span>
+      <div class="ev-panel" data-ev="cost">
+        <div class="tc-scroll card" style="padding:0">
+          <table class="tc">
+            <thead><tr><th>Judge setting</th><th>Lies caught</th><th>False alarms</th><th>Time / call</th><th>Cost</th></tr></thead>
+            <tbody>
+              <tr><td>Full output, high effort</td><td>11 of 11</td><td>0 of 4</td><td>17 s</td><td>$0.81</td></tr>
+              <tr><td>Trimmed, high</td><td>11 of 11</td><td>0 of 4</td><td>11 s</td><td>$0.57</td></tr>
+              <tr><td><b>Trimmed, medium (default)</b></td><td>11 of 11</td><td>0 of 4</td><td>9 s</td><td>$0.50</td></tr>
+            </tbody>
+          </table>
         </div>
+        <p class="ev-note">Every optimization was an experiment against the same labelled set, not a guess: about half the time and 40% less cost, with no loss in accuracy. The evals also measured an assumption nobody had checked: prompt caching hits 75–100% of the time. Measured cost is about $0.03–0.07 per tailoring and about $0.15 per real fact check.</p>
       </div>
+    </div>
+
+    <div class="ev-part">
+      <h3 class="ev-h3"><span class="n">03</span>Six things I'd do again</h3>
+      <div class="lessons" style="margin-top:16px">
+        <div class="card"><h5>Test the test</h5><p>An LLM judge is a test oracle. Validate it on planted errors before trusting a single verdict.</p></div>
+        <div class="card"><h5>Cheap checks first</h5><p>Free checks caught 61% of lies with no AI. Spend model calls only on what text matching can't see.</p></div>
+        <div class="card"><h5>Write the policy down</h5><p>“Reworded is fine, overstated fails” is a product call. Make it explicit and shared.</p></div>
+        <div class="card"><h5>Error is not fail</h5><p>When API credits ran out mid-run, every case errored. Counted as fails, the report would have lied.</p></div>
+        <div class="card"><h5>Act on claims, not decimals</h5><p>Scores depend on how claims are split. The flagged sentences are what you fix.</p></div>
+        <div class="card"><h5>Measure assumptions</h5><p>Caching, cost, and speed claims went from “should work” to measured numbers.</p></div>
+      </div>
+      <p class="ev-foot">The method started in my open-source <a href="https://github.com/ademdeniz/faithfulness-evals" target="_blank" rel="noopener">faithfulness-evals</a> project. Synthetic fixtures run in CI; real résumés and results stay local.</p>
     </div>
   </div>
 </section>
@@ -723,6 +859,7 @@ footer a{color:var(--muted)}
         ['Test AI output for <b>factual accuracy, hallucination, inappropriate difficulty, retrieval regressions, and guardrail breaks</b>.'],
         ['Reviewed <b>frontier-lab training data and model outputs</b> at Mercor against detailed rubrics, with evidence-based rationales for every judgment.'],
         ['Authored an <b>MCP server QA test plan</b> covering 39 tools, a 30-test golden dataset, and 60+ targeted cases.'],
+        ['Built a <b>claim-level fact-check eval suite</b> for Pitchlio’s AI résumé tailor. The AI judge was validated on planted lies first: 18 of 18 caught, with no false alarms.'],
         ['Built the <b>same faithfulness eval three ways</b> (Promptfoo, DeepEval, RAGAS), with Claude as judge and a calibration set of 10 grounded + 10 adversarial cases.']
       ],
       meta:'see → faithfulness-evals · playwright-mcp · appium-ai-agent'
@@ -775,57 +912,48 @@ footer a{color:var(--muted)}
   wireTabs('#artifacts .tab','data-art',function(k){$$('.art').forEach(function(a){a.classList.toggle('on',a.getAttribute('data-art')===k)})});
 
   /* ---------- eval lab ---------- */
-  // claims: [text, supported?]
-  var ANS=[
-    {id:'A',claims:[['Metformin works mainly by reducing how much glucose your liver produces.',1],[' The most common side effects are gastrointestinal, like nausea and diarrhea.',1],[' It should be avoided if you have severe kidney problems.',1]],
-     truth:'pass',why:'Every claim maps to a source sentence. It paraphrases without adding anything.'},
-    {id:'B',claims:[['Metformin lowers blood sugar by reducing glucose production in the liver.',1],[' Common side effects include nausea and diarrhea.',1],[' Rarely, it can cause lactic acidosis, and long-term use may lower vitamin B12 levels.',0]],
-     truth:'fail',why:'This is the trap case. Lactic acidosis and B12 deficiency are real, medically accurate risks, but <b>neither is in the source</b>. The answer is true but unfaithful. Whether that should pass is a content-policy decision, and the eval encodes that policy.'},
-    {id:'C',claims:[['Metformin works by increasing insulin secretion from the pancreas.',0],[' Side effects are usually gastrointestinal, such as nausea.',1],[' It is safe for everyone, including people with kidney disease.',0]],
-     truth:'fail',why:'Two unsupported claims. One is a wrong mechanism, and the other directly contradicts the source (a guardrail-level safety failure). A reviewer should escalate this, not just score it.'}
+  var LABELS=['supported','reworded','overstated','unsupported','contradicted'];
+  var OKL={supported:1,reworded:1};
+  var CLAIMS=[
+    {id:'A',t:'Led a QA team of five engineers.',truth:'overstated',why:'Real but inflated: mentoring two juniors became leading a team of five.'},
+    {id:'B',t:'Built CI/CD pipelines running 300 regression tests every night.',truth:'reworded',why:'Same fact in the posting’s words: “Jenkins pipeline” became “CI/CD pipelines”.'},
+    {id:'C',t:'Automated performance testing with k6 for the checkout flow.',truth:'unsupported',why:'k6 came from the job posting. Nothing in the source backs it.'},
+    {id:'D',t:'Cut flaky test failures by 30% by stabilizing waits and locators.',truth:'supported',why:'Stated in the source, nearly word for word.'},
+    {id:'E',t:'Senior QA Engineer at Acme Corp since 2019.',truth:'contradicted',why:'Conflicts with the source, which shows the role starting in 2021.'}
   ];
-  var votes={}, answersEl=$('#answers'), labRoot=$('#labRoot');
-  function renderAnswers(){
-    answersEl.innerHTML=ANS.map(function(a){
-      var sup=a.claims.filter(function(c){return c[1]}).length, tot=a.claims.length, pct=Math.round(sup/tot*100);
-      var col=pct===100?'var(--pass)':pct>=60?'var(--warn)':'var(--fail)';
-      return '<div class="ans" data-id="'+a.id+'"><div class="ans-top"><span class="ans-id">'+a.id+'</span><div class="ans-text">'+
-        a.claims.map(function(c){return '<span class="claim '+(c[1]?'s':'u')+'">'+c[0]+'</span>'}).join('')+
-        '</div></div><div class="ans-actions"><span class="lbl">your verdict</span>'+
-        '<button class="vote pass" type="button" aria-pressed="false" data-v="pass">PASS</button>'+
-        '<button class="vote fail" type="button" aria-pressed="false" data-v="fail">FAIL</button></div>'+
-        '<div class="verdict"><div class="row"><span class="pill '+(a.truth==='pass'?'pass':'fail')+'">judge: '+a.truth.toUpperCase()+'</span>'+
-        '<span class="mono" style="font-size:12.5px">faithfulness '+sup+'/'+tot+' claims · '+pct+'%</span>'+
-        '<span class="bar"><i data-w="'+pct+'" style="background:'+col+'"></i></span><span class="you"></span></div><p>'+a.why+'</p></div></div>';
+  var picks={}, claimsEl=$('#claims'), labRoot=$('#labRoot');
+  function verdictPill(l){return OKL[l]?'<span class="pill pass">OK</span>':'<span class="pill fail">Fail</span>'}
+  function renderClaims(){
+    claimsEl.innerHTML=CLAIMS.map(function(c){
+      return '<div class="claim" data-id="'+c.id+'"><div class="claim-top"><span class="claim-id">'+c.id+'</span><div class="claim-text">'+c.t+'</div></div>'+
+        '<div class="lbls" role="group" aria-label="Label for claim '+c.id+'">'+LABELS.map(function(l){return '<button class="lbl-btn" type="button" aria-pressed="false" data-l="'+l+'">'+l+'</button>'}).join('')+'</div>'+
+        '<div class="claim-verdict"><div class="row"><span>Judge:</span><span class="mono" style="color:var(--text);font-size:12.5px">'+c.truth+'</span>'+verdictPill(c.truth)+'<span class="you"></span></div>'+c.why+'</div></div>';
     }).join('');
-    $$('.vote',answersEl).forEach(function(b){
+    $$('.lbl-btn',claimsEl).forEach(function(b){
       b.addEventListener('click',function(){
-        var card=b.closest('.ans'), id=card.getAttribute('data-id');
-        votes[id]=b.getAttribute('data-v');
-        $$('.vote',card).forEach(function(x){x.setAttribute('aria-pressed',x===b)});
+        var card=b.closest('.claim'), id=card.getAttribute('data-id');
+        picks[id]=b.getAttribute('data-l');
+        $$('.lbl-btn',card).forEach(function(x){x.setAttribute('aria-pressed',x===b)});
         if(labRoot.classList.contains('judged')) judge();
-        else $('#labScore').textContent=Object.keys(votes).length+'/3 marked'+(Object.keys(votes).length===3?'. Ready to run the judge.':'');
+        else{var n=Object.keys(picks).length;$('#labScore').textContent=n+'/5 labelled'+(n===5?'. Ready to run the judge.':'')}
       });
     });
   }
   function judge(){
     labRoot.classList.add('judged');
-    var right=0, n=0;
-    ANS.forEach(function(a){
-      var card=$('.ans[data-id="'+a.id+'"]',answersEl), you=$('.you',card), v=votes[a.id];
-      if(v){n++; if(v===a.truth){right++; you.innerHTML='<span class="pill pass">you: ✓ match</span>';card.style.borderColor='color-mix(in srgb,var(--pass) 45%,var(--line))'}
-        else{you.innerHTML='<span class="pill fail">you: ✗ mismatch</span>';card.style.borderColor='color-mix(in srgb,var(--fail) 45%,var(--line))'}}
-      else{you.innerHTML='<span class="pill warn">not marked</span>';card.style.borderColor=''}
+    var right=0;
+    CLAIMS.forEach(function(c){
+      var card=$('.claim[data-id="'+c.id+'"]',claimsEl), you=$('.you',card), v=picks[c.id];
+      if(!v){you.innerHTML='<span class="pill warn">not labelled</span>';card.style.borderColor='';return}
+      if(v===c.truth){right++;you.innerHTML='<span class="pill pass">you: ✓ match</span>';card.style.borderColor='color-mix(in srgb,var(--pass) 45%,var(--line))'}
+      else{you.innerHTML='<span class="pill fail">you: '+v+'</span>';card.style.borderColor='color-mix(in srgb,var(--fail) 45%,var(--line))'}
     });
-    requestAnimationFrame(function(){$$('.bar i',answersEl).forEach(function(i){i.style.width=i.getAttribute('data-w')+'%'})});
-    var msg='Judge agreement: <b>'+right+'/3</b>. ';
-    msg+= right===3?'Nice. You caught the “true but unsourced” trap in B.':
-          (votes.B==='pass'?'B is the classic miss: medically correct, but not in the source.':'Green highlights are supported claims; red ones are unsupported.');
-    $('#labScore').innerHTML=msg;
+    $('#labScore').innerHTML='You matched <b>'+right+' of 5</b> labels. Judge verdict: <b>not ready to send</b>, with 3 claims to fix.'+(right===5?' Nice work.':'');
   }
   $('#runJudge').addEventListener('click',judge);
-  $('#resetLab').addEventListener('click',function(){votes={};labRoot.classList.remove('judged');renderAnswers();$('#labScore').textContent='Mark all three answers, then run the judge.'});
-  renderAnswers();
+  $('#resetLab').addEventListener('click',function(){picks={};labRoot.classList.remove('judged');renderClaims();$('#labScore').textContent='Label all five claims, then run the judge.'});
+  renderClaims();
+  wireTabs('#lab .tab','data-ev',function(k){$$('.ev-panel').forEach(function(p){p.classList.toggle('on',p.getAttribute('data-ev')===k)})});
 
   /* ---------- projects ---------- */
   var IC={
